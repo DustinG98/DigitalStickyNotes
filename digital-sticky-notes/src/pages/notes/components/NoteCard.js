@@ -1,4 +1,5 @@
 import React from 'react'
+import '../notes.scss'
 
 const Notes = ({notes, deleteNote, editNote}) => {
 
@@ -6,13 +7,24 @@ const Notes = ({notes, deleteNote, editNote}) => {
     const noteList = notes.length ? (
         notes.map(note => {
             return (
-                <div className="collection-item" key={note.id}>
+                <div className="noteCard" key={note.id}>
                     {/* NOTE CARDS */}
-                    <h1>{note.title}</h1>
-                    <h2>{note.subtitle}</h2>
+                    <div className="noteCardHeader">
+                        <div className="container">
+                            <div className="buttons">
+                                <button onClick={() => editNote(note)}>E</button>
+                                <button onClick={() => deleteNote(note.id)}>D</button>
+                            </div>
+                            <div  className="noteCardTag">
+                                <span>JS</span>
+                            </div>
+                        </div>
+                        <h2>{note.title}</h2>
+                    </div>
+                    
+                    <h3>{note.subtitle}</h3>
                     <p>{note.description}</p>
-                    <button onClick={() => editNote(note)}>Edit</button>
-                    <button onClick={() => deleteNote(note.id)}>Delete</button>
+                    
                 </div>
             )
         })
@@ -22,7 +34,7 @@ const Notes = ({notes, deleteNote, editNote}) => {
 
 
     return (
-        <div className="todos collection">
+        <div className="notes-container">
             {noteList}
         </div>
     )
