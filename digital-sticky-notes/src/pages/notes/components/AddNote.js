@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
 const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
+    //INITIAL NOTE STATE
     const [note, setNote] = useState({title: '', subtitle: '', description: '' });
 
+    //EMPTY OBJECT FUNCTION
     function isEmpty(obj) {
         for(let key in obj) {
             if(obj.hasOwnProperty(key))
@@ -11,6 +13,8 @@ const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
         return true;
     }
 
+
+    //HANDLE SUBMIT -- RESETS FORM -- IF OBJECT IS EMPTY ADDS A NEW NOTE -- IF OBJECT IS NOT EMPTY IT FINISHES THE EDIT
     const handleSubmit = event => {
         event.preventDefault();
         setNote({ title: '', subtitle: '', description: '' });
@@ -22,10 +26,12 @@ const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
         }
     }
 
+    //WHEN THE FORM CHANGES IT SETS THE NOTE'S STATE
     const handleChange = event => {
         setNote({ ...note, [event.target.name]: event.target.value })
     }
 
+    //WATCHING noteToEdit, IF IT'S EMPTY IT SETS THE NOTE TO EMPTY STATE, IF IT'S NOT EMPTY IT SETS THE NOTE TO THE noteToEdit
     useEffect(() => {
         if(isEmpty(noteToEdit) === true) {
             setNote({ title: '', subtitle: '', description: '' })
@@ -37,6 +43,7 @@ const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
 
     return (
         <div>
+            {/* ADD NEW NOTE FORM */}
             <form onSubmit={(event) => handleSubmit(event)}>
                 <div>
                     <input type='text' name='title' placeholder="Title" value={note.title} onChange={(event) => handleChange(event)} />

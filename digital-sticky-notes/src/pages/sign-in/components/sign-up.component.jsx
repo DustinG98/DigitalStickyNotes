@@ -3,6 +3,7 @@ import '../sign-in-up.scss'
 import { Link } from 'react-router-dom'
 
 const SignUp = () => {
+    //SIGN UP FORM
     return (
         <div>
             <form className="form">

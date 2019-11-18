@@ -44,6 +44,7 @@ const Notes = () => {
       return (
         <div>
             <h1>Notes</h1>
+            {/* NOTES PAGE - ADD NOTE FORM & CURRENT NOTES - PASSING PROPS */}
             <AddNote addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit} />
             <NoteCard notes={notes} deleteNote={deleteNote} editNote={editNote} />
         </div>

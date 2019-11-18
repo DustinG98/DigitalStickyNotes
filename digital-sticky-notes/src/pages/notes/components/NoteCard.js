@@ -2,10 +2,12 @@ import React from 'react'
 
 const Notes = ({notes, deleteNote, editNote}) => {
 
+    //CONDITIONAL- IF THE NOTES ARE NOT EMPTY IT DISPLAYS THE NOTES, IF THERE IS NO NOTES IT DISPLAYS 'You have no notes left'
     const noteList = notes.length ? (
         notes.map(note => {
             return (
                 <div className="collection-item" key={note.id}>
+                    {/* NOTE CARDS */}
                     <h1>{note.title}</h1>
                     <h2>{note.subtitle}</h2>
                     <p>{note.description}</p>
@@ -17,6 +19,8 @@ const Notes = ({notes, deleteNote, editNote}) => {
     ) : (
         <p className="center">You have no notes left</p>
     )
+
+
     return (
         <div className="todos collection">
             {noteList}
