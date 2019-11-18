@@ -6,8 +6,8 @@ import NoteCard from './components/NoteCard'
 const Notes = () => {
     //INITIAL STATE
     const [notes, setNotes] = useState([
-        {id: 1, title: 'Example Note 1', subtitle: 'SubTitties', description: 'lorem ipsum '},
-        {id: 2, title: 'Example Note 2', subtitle: 'SubTitties', description: 'lorem ipsum '}
+        {id: 1, title: 'Example Note 1', subtitle: 'SUBTITTLES', description: 'lorem ipsum '},
+        {id: 2, title: 'Example Note 2', subtitle: 'SUBTITTLES', description: 'lorem ipsum '}
       ]);
       //DELETE NOTE
       const deleteNote = (id) => {
