@@ -6,7 +6,6 @@ const NoteGroups = (props) => {
     const { notes, deleteNote, editNote, addNote, noteToEdit, finishEdit } = props;
     return (
         <div>
-            
             <div className="noteGroups">
                 <div>
                 <NoteCardHeader notes={notes} deleteNote={deleteNote} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit}/>
