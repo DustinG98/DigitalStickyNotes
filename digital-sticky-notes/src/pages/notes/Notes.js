@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AddNote from './components/AddNote'
-import NoteCard from './components/NoteCard'
+// import NoteCard from './components/NoteCard'
+import NoteGroups from './NoteGroups'
 
 
 const Notes = () => {
@@ -46,7 +47,9 @@ const Notes = () => {
             <h1>Notes</h1>
             {/* NOTES PAGE - ADD NOTE FORM & CURRENT NOTES - PASSING PROPS */}
             <AddNote addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit} />
-            <NoteCard notes={notes} deleteNote={deleteNote} editNote={editNote} />
+            
+            <NoteGroups notes={notes} deleteNote={deleteNote} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit}/>
+            {/* <NoteCard notes={notes} /> */}
         </div>
       )
   

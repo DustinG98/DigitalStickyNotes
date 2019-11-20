@@ -9,22 +9,10 @@ const Notes = ({notes, deleteNote, editNote}) => {
             return (
                 <div className="noteCard" key={note.id}>
                     {/* NOTE CARDS */}
-                    <div className="noteCardHeader">
-                        <div className="container">
-                            <div className="buttons">
-                                <button onClick={() => editNote(note)}>E</button>
-                                <button onClick={() => deleteNote(note.id)}>D</button>
-                            </div>
-                            <div  className="noteCardTag">
-                                <span>JS</span>
-                            </div>
-                        </div>
-                        <h2>{note.title}</h2>
+                    <div classname="bodySection">
+                        <h3>{note.subtitle}</h3>
+                        <p>{note.description}</p>
                     </div>
-                    
-                    <h3>{note.subtitle}</h3>
-                    <p>{note.description}</p>
-                    
                 </div>
             )
         })

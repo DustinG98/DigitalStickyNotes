@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import '../notes.scss'
 
 const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
     //INITIAL NOTE STATE
@@ -42,7 +43,7 @@ const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
 
 
     return (
-        <div>
+        <div className="addNote">
             {/* ADD NEW NOTE FORM */}
             <form onSubmit={(event) => handleSubmit(event)}>
                 <div>
