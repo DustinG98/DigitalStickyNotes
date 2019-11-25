@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../notes.scss'
 
-const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
+const AddNote = ({ addNote, noteToEdit, finishEdit, noteGroupId }) => {
     //INITIAL NOTE STATE
     const [note, setNote] = useState({title: '', subtitle: '', description: '' });
 
@@ -21,7 +21,7 @@ const AddNote = ({ addNote, noteToEdit, finishEdit }) => {
         setNote({ title: '', subtitle: '', description: '' });
 
         if(isEmpty(noteToEdit) === true) {
-            addNote(note)
+            addNote(note, noteGroupId)
         } else {
             finishEdit(note)
         }

@@ -63,8 +63,6 @@
         height: 4rem;
         font-size: 20px;
         font-weight: 700;
-        background-image: url('./tag.png');
-        background-size: cover;
         span{
             margin-right: 20%;
             margin-top: 5%;
@@ -75,7 +73,7 @@
 .addNote{
     z-index: 999;
 }
-.noteGroups{
+.noteGroup{
     padding: 2% 4%;
     background-color: gray;
     max-width: 30%;
