@@ -42,6 +42,7 @@ const AddNote = ({ addNote, noteToEdit, finishEdit, noteGroupId }) => {
     }, [noteToEdit])
 
 
+
     return (
         <div className="addNote">
             {/* ADD NEW NOTE FORM */}

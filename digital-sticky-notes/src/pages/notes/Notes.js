@@ -3,13 +3,13 @@ import NoteGroups from './NoteGroups'
 
 
 
-
 const Notes = () => {
     //INITIAL STATE
     const [notes, setNotes] = useState([
         {id: 1, title: 'Example Note 1', subtitle: 'SUBTITTLES', description: 'lorem ipsum '},
         {id: 2, title: 'Example Note 2', subtitle: 'SUBTITTLES', description: 'lorem ipsum '}
       ]);
+      
       //DELETE NOTE
       const deleteNote = (id) => {
         const newNotes = notes.filter(note => {
@@ -17,6 +17,7 @@ const Notes = () => {
         })
         setNotes(newNotes)
       }
+
       //ADD NOTE
       const addNote = (note) => {
         note.id = Math.random();
