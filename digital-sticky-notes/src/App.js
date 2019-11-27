@@ -4,6 +4,7 @@ import WelcomePage from './pages/welcome-page/WelcomePage'
 import SignInPage from './pages/sign-in/sign-in-page'
 import './App.scss'
 import Notes from './pages/notes/Notes';
+import NoteContextProvider from './pages/notes/contexts/NoteContext'
 
 const App = () => {
 
@@ -19,7 +20,7 @@ const App = () => {
         </nav>
         {/* ROUTES FOR NAVBAR */}
         <Route exact path="/" render={props => <WelcomePage {...props}/>}/>
-        <Route path="/notes" render={props => <Notes/>}/>
+        <Route path="/notes" render={props => <NoteContextProvider><Notes/></NoteContextProvider>}/>
         <Route path="/login" render={props => <SignInPage/>}/>
         
       </div>

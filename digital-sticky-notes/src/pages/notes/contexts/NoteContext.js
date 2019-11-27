@@ -3,69 +3,47 @@ import React, { createContext, useState } from 'react'
 export const NoteContext = createContext();
 
 const NoteContextProvider = (props) => {
-    const { editNote, noteToEdit, finishEdit } = props;
- 
-    //noteGroups
-    const [noteGroups, setNoteGroups] = useState([
-        {id: 1, title: "Finished", notes: [
-            {id: 1, title: 'Example Note 1', subtitle: 'SUBTITTLES', description: 'lorem ipsum '},
-            {id: 2, title: 'Example Note 2', subtitle: 'SUBTITTLES', description: 'lorem ipsum '}
-        ]}
-    ]);
-
-    const [noteGroup, setNoteGroup] = useState({title: "", notes: []})
-    //add note group
-    const addNoteGroup = (noteGroup) => {
-        noteGroup.id = Math.random();
-        setNoteGroups([...noteGroups, noteGroup])
-    }
-    
-    //delete note group
-    const deleteNoteGroup = (id) => {
-        const newNoteGroups = noteGroups.filter(noteGroup => {
-            return noteGroup.id !== id;
+     //INITIAL STATE
+     const [notes, setNotes] = useState([
+        {id: 1, title: 'Example Note 1', subtitle: 'SUBTITTLES', description: 'lorem ipsum '},
+        {id: 2, title: 'Example Note 2', subtitle: 'SUBTITTLES', description: 'lorem ipsum '}
+      ]);
+      
+      //DELETE NOTE
+      const deleteNote = (id) => {
+        const newNotes = notes.filter(note => {
+          return note.id !== id;
         })
-        setNoteGroups(newNoteGroups)
-    }
+        setNotes(newNotes)
+      }
 
-    const [notes, setNotes] = useState([]);
-    //deleteNote
-    const deleteNote = (noteGroupId, id) => {
-        noteGroups.map(noteGroup => {
-            if(noteGroup.id === noteGroupId) {
-               const newNotes = noteGroup.notes.filter(note => {
-                    return note.id !== id;
-                })
-                noteGroup.notes = newNotes;
-                setNotes([])
-            }
-            return null;
+      //ADD NOTE
+      const addNote = (note) => {
+        note.id = Math.random();
+        setNotes([...notes, note])
+      }
+  
+  
+      //EDIT NOTE
+      const [noteToEdit, setNoteToEdit] = useState({})
+  
+      const editNote = note => {
+        setNoteToEdit(note)
+      }
+  
+      //FINISH EDIT
+      const finishEdit = editedNote => {
+        notes.map(note => {
+          if(note.id === editedNote.id[0]) {
+            note.title = editedNote.title;
+            note.subtitle = editedNote.subtitle;
+            note.description = editedNote.description;
+            setNoteToEdit({})
+          } return null;
         })
-    }
-    //addNote
-    const addNote = (note, id) => {
-        noteGroups.map(noteGroup => {
-            if(noteGroup.id === id) {
-                noteGroup.notes.push(note);
-            }
-            setNotes([])
-            return null;
-        })
-    }
-
-    //handle submit
-    const handleSubmit = event => {
-        event.preventDefault();
-        setNoteGroup({title: ""})
-        addNoteGroup(noteGroup)
-    }
-
-    //handle change
-    const handleChange = event => {
-        setNoteGroup({...noteGroup, [event.target.name]: event.target.value})
-    }
+      }
     return (
-        <NoteContext.Provider value={[]}>
+        <NoteContext.Provider value={[addNote, deleteNote, noteToEdit, editNote, finishEdit]}>
             {props.children}
         </NoteContext.Provider>
     )
