@@ -30,6 +30,7 @@ const NoteGroups = (props) => {
     }
 
     const [notes, setNotes] = useState([]);
+    console.log(notes)
     //deleteNote
     const deleteNote = (noteGroupId, id) => {
         noteGroups.map(noteGroup => {
@@ -77,7 +78,7 @@ const NoteGroups = (props) => {
 
                 {noteGroups.map(noteGroup => {
                    return <div className="noteGroup" key={noteGroup.id}>
-                       
+                       <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button>
                        <AddNote addNote={addNote} noteGroupId={noteGroup.id} noteToEdit={noteToEdit} finishEdit={finishEdit} />
                        <NoteCardHeader noteGroupId={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} deleteNote={deleteNote} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit}/>
                     </div>

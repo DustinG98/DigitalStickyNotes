@@ -5,7 +5,7 @@ import '../notes.scss'
 const NoteCardHeader = (props) => {
     const { noteGroupId, notes, editNote, deleteNote } = props;
     return (
-        notes.map(note => {
+        (notes !== undefined ? notes.map(note => {
             return <div className="noteCardHeader">
             <div className="container">
                 <div className="buttons">
@@ -21,7 +21,7 @@ const NoteCardHeader = (props) => {
 
             </div>
         </div>
-        })
+        }) : null)
         
     )
 }
