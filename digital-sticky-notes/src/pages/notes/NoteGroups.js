@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import NoteCardHeader from './components/NoteCardHeader'
 import './notes.scss'
 import AddNote from './components/AddNote'
+import { NoteContext } from './contexts/NoteContext'
 
-const NoteGroups = (props) => {
-    const { editNote, noteToEdit, finishEdit } = props;
- 
+const NoteGroups = () => {
+    const [editNote, noteToEdit, finishEdit] = useContext(NoteContext);
+    console.log(editNote)
     //noteGroups
     const [noteGroups, setNoteGroups] = useState([
         {id: 1, title: "Finished", notes: [
@@ -30,7 +31,6 @@ const NoteGroups = (props) => {
     }
 
     const [notes, setNotes] = useState([]);
-    console.log(notes)
     //deleteNote
     const deleteNote = (noteGroupId, id) => {
         noteGroups.map(noteGroup => {
