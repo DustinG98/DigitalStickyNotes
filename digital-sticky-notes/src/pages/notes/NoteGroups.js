@@ -1,59 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import NoteCardHeader from './components/NoteCardHeader'
 import './notes.scss'
 import AddNote from './components/AddNote'
 import { NoteContext } from './contexts/NoteContext'
+import { NoteGroupsContext } from './contexts/NoteGroupsContext'
 
 const NoteGroups = () => {
     const [editNote, noteToEdit, finishEdit] = useContext(NoteContext);
-    console.log(editNote)
-    //noteGroups
-    const [noteGroups, setNoteGroups] = useState([
-        {id: 1, title: "Finished", notes: [
-            {id: 1, title: 'Example Note 1', subtitle: 'SUBTITTLES', description: 'lorem ipsum '},
-            {id: 2, title: 'Example Note 2', subtitle: 'SUBTITTLES', description: 'lorem ipsum '}
-        ]}
-    ]);
+    const [setNoteGroup, noteGroups, noteGroup, addNoteGroup, deleteNoteGroup, addNote, deleteNote] = useContext(NoteGroupsContext);
 
-    const [noteGroup, setNoteGroup] = useState({title: "", notes: []})
-    //add note group
-    const addNoteGroup = (noteGroup) => {
-        noteGroup.id = Math.random();
-        setNoteGroups([...noteGroups, noteGroup])
-    }
-    
-    //delete note group
-    const deleteNoteGroup = (id) => {
-        const newNoteGroups = noteGroups.filter(noteGroup => {
-            return noteGroup.id !== id;
-        })
-        setNoteGroups(newNoteGroups)
-    }
-
-    const [notes, setNotes] = useState([]);
-    //deleteNote
-    const deleteNote = (noteGroupId, id) => {
-        noteGroups.map(noteGroup => {
-            if(noteGroup.id === noteGroupId) {
-               const newNotes = noteGroup.notes.filter(note => {
-                    return note.id !== id;
-                })
-                noteGroup.notes = newNotes;
-                setNotes([])
-            }
-            return null;
-        })
-    }
-    //addNote
-    const addNote = (note, id) => {
-        noteGroups.map(noteGroup => {
-            if(noteGroup.id === id) {
-                noteGroup.notes.push(note);
-            }
-            setNotes([])
-            return null;
-        })
-    }
 
     //handle submit
     const handleSubmit = event => {
@@ -76,13 +31,13 @@ const NoteGroups = () => {
             </div>
             <div className="noteGroups">
 
-                {noteGroups.map(noteGroup => {
+                {noteGroups !== undefined ? noteGroups.map(noteGroup => {
                    return <div className="noteGroup" key={noteGroup.id}>
                        <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button>
                        <AddNote addNote={addNote} noteGroupId={noteGroup.id} noteToEdit={noteToEdit} finishEdit={finishEdit} />
                        <NoteCardHeader noteGroupId={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} deleteNote={deleteNote} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit}/>
                     </div>
-                })}
+                }) : null}
                 
             </div>
         </div>

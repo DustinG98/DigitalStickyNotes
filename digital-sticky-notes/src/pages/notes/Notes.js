@@ -1,6 +1,7 @@
 import React from 'react'
 import NoteGroups from './NoteGroups'
 import NoteContextProvider from './contexts/NoteContext'
+import NoteGroupsProvider from './contexts/NoteGroupsContext'
 
 const Notes = () => {
   
@@ -10,7 +11,11 @@ const Notes = () => {
             {/* NOTES PAGE - ADD NOTE FORM & CURRENT NOTES - PASSING PROPS */}
             
             
-            <NoteContextProvider><NoteGroups/></NoteContextProvider>
+            <NoteContextProvider>
+              <NoteGroupsProvider>
+                <NoteGroups/>
+              </NoteGroupsProvider>
+            </NoteContextProvider>
             {/* <NoteCard notes={notes} /> */}
         </div>
       )
