@@ -51,7 +51,7 @@ const NoteGroupsProvider = (props) => {
             })
         }
     return (
-        <NoteGroupsContext.Provider value={[{noteGroups,setNoteGroups}, noteGroup, setNoteGroup, addNoteGroup, deleteNoteGroup, notes, deleteNote, addNote]}>
+        <NoteGroupsContext.Provider value={[noteGroups,setNoteGroups, noteGroup, setNoteGroup, addNoteGroup, deleteNoteGroup, notes, deleteNote, addNote]}>
             {props.children}
         </NoteGroupsContext.Provider>
     )
