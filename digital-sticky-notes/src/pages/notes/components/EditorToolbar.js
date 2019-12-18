@@ -6,7 +6,6 @@ import './edittoolbar.scss'
 const EditorToolbar = ({editorState, setEditorState, styles}) => {
 
     //declare state for conditional rendering of font size menu
-    const [isShowingFontSizeMenu, setIsShowingFontSizeMenu] = useState(false)
 
     const setFontSize = (e, value) => {
         console.log(e)
@@ -20,8 +19,6 @@ const EditorToolbar = ({editorState, setEditorState, styles}) => {
         //set editorState to display new font size
         setEditorState(styles.fontSize.add(newEditorState, value))
 
-        //close dropdown menu
-        setIsShowingFontSizeMenu(false)
     }
     const setBold = (e) => {
         e.preventDefault()

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js'
+import {Editor, EditorState} from 'draft-js'
 
 //import draft-js-custom-styles
 import createStyles from 'draft-js-custom-styles'
