@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import NoteCardHeader from './components/NoteCardHeader'
 import './notes.scss'
 import AddNote from './components/AddNote'
-import { NoteContext } from './contexts/NoteContext'
-import { NoteGroupsContext } from './contexts/NoteGroupsContext'
 
-const NoteGroups = () => {
-    const [editNote, noteToEdit, finishEdit] = useContext(NoteContext);
+const NoteGroups = (props) => {
+    const { editNote, noteToEdit, finishEdit }  = props;
     // const [setNoteGroup, noteGroups, noteGroup, addNoteGroup, deleteNoteGroup, addNote, deleteNote] = useContext(NoteGroupsContext);
     const [noteGroups, setNoteGroups] = useState([
         {id: 1, title: "Finished", notes: [
