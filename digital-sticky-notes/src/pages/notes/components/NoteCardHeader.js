@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../notes.scss'
 import Popup from 'reactjs-popup'
 import TextEditor from './TextEditor'
 
 const NoteCardHeader = (props) => {
-    const { noteGroupId, notes, editNote, deleteNote, section } = props;
+    const { notes, section } = props;
 
 
     return (
