@@ -1,0 +1,12 @@
+.edit-toolbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: lightgray;
+    padding: 2%;
+    .edit-btn {
+        border: 1px solid black;
+        padding: 5px 10px;
+        height: 30px;
+    }
+}
