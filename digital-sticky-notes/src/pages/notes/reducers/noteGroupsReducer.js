@@ -8,7 +8,6 @@ const initialState = [
 ]
 
 const noteGroupsReducer = (state = initialState, action) => {
-    console.log(action)
     switch(action.type) {
         case CONSTANTS.ADD_NOTE_GROUP:
             

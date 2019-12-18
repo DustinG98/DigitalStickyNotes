@@ -6,7 +6,7 @@ const NoteCardHeader = (props) => {
     const { noteGroupId, notes, editNote, deleteNote } = props;
     return (
         (notes !== undefined ? notes.map(note => {
-            return <div className="noteCardHeader">
+            return <div key={note.id} className="noteCardHeader">
             <div className="container">
                 <div className="buttons">
                     <button onClick={() => editNote(note)}>E</button>
