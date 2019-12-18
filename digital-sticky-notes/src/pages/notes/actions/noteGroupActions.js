@@ -1,8 +1,8 @@
 import { CONSTANTS } from '../actions'
 
-export const addNoteGroup = (title) => {
+export const addNoteGroup = (title, section) => {
     return {
         type: CONSTANTS.ADD_NOTE_GROUP,
-        payload: title
+        payload: {title, section}
     }
 }

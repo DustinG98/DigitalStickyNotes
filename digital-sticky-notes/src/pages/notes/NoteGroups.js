@@ -18,14 +18,15 @@ const NoteGroups = (props) => {
     // ]);
 
     const [title, setTitle] = useState("")
+    const [section, setSection] = useState("")
     //add note group
     const handleAddNoteGroup = (e) => {
         e.preventDefault()
         const { dispatch } = props;
-        const { text } = title;
 
         setTitle("")
-         dispatch(addNoteGroup(text))
+        setSection("")
+         dispatch(addNoteGroup(title, section))
     }
     
     //delete note group
@@ -70,14 +71,18 @@ const NoteGroups = (props) => {
     // }
 
     //handle change
-    const handleChange = event => {
+    const handleTitleChange = event => {
         setTitle(event.target.value)
+    }
+    const handleSectionChange = event => {
+        setSection(event.target.value)
     }
     return (
         <div>
             <div>
                 <form onSubmit={e => handleAddNoteGroup(e)}>
-                    <input type="text" name="title" placeholder="Title" value={title} onChange={event => handleChange(event)}/>
+                    <input type="text" name="title" placeholder="Title" value={title} onChange={event => handleTitleChange(event)}/>
+                    <input type="text" name="section" placeholder="Section" value={section} onChange={event => handleSectionChange(event)}/>
                     <button onClick={e => handleAddNoteGroup(e)}>Add Note Group</button>
                 </form>
             </div>
@@ -86,8 +91,9 @@ const NoteGroups = (props) => {
                 {noteGroups !== undefined ? noteGroups.map(noteGroup => {
                    return <div className="noteGroup" key={noteGroup.id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
+                        <h2>{noteGroup.title}</h2>
                        <AddNote addNote={handleAddNote} noteGroupId={noteGroup.id} noteToEdit={noteToEdit} finishEdit={finishEdit} />
-                       <NoteCardHeader noteGroupId={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit}/>
+                       <NoteCardHeader noteGroupId={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit} section={noteGroup.section}/>
                     </div>
                 }) : null}
                 

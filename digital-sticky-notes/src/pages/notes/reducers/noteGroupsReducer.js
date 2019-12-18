@@ -1,10 +1,14 @@
 import { CONSTANTS } from "../actions"
 
 const initialState = [
-    {id: 1, title: "Finished", notes: [
-        {id: 1, title: 'Example Note 1'},
-        {id: 2, title: 'Example Note 3'}
-    ]}
+    {   
+        id: 1, 
+        title: "Finished",
+        section: "JS",
+        notes: [
+            {id: 1, title: 'Example Note 1'},
+            {id: 2, title: 'Example Note 3'}
+        ]}
 ]
 
 const noteGroupsReducer = (state = initialState, action) => {
@@ -12,7 +16,8 @@ const noteGroupsReducer = (state = initialState, action) => {
         case CONSTANTS.ADD_NOTE_GROUP:
             
             const newNoteGroup = {
-                title: action.payload,
+                title: action.payload.title,
+                section: action.payload.section,
                 id: Date.now(),
                 notes: []
             }

@@ -1,21 +1,6 @@
-.notes-container{
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
-    .noteCard{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: gray;
-        flex-direction: column;
-        width: 100%;
-        max-width: 400px;
-        height: 60vh;
-        max-height: 700px;
-        border-radius: 10px;
-        margin: 2%;
-        
-    }
+
+.noteGroup {
+    border: 2px solid black;
 }
 .noteCardHeader{
     width: 100%;
@@ -74,14 +59,39 @@
     z-index: 999;
 }
 .noteGroup{
-    padding: 2% 4%;
+    padding: 0 2%;
+    padding-bottom: 2%;
     background-color: gray;
-    max-width: 30%;
-    margin: auto;
+    width: 20%;
+    margin: 2%;
+    min-width: 200px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     border-radius: 5%;
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        input{
+            border-radius: 10px;
+            padding: 5px 12px;
+            margin: 0 1rem;
+        }
+        button {
+            margin-top: 2%;
+            width: 100px;
+        }
+    }
+}
+
+.noteGroups {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 }
