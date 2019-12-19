@@ -1,7 +1,7 @@
 import React from 'react';
-import '../notes.scss'
+import '../../notes.scss'
 import Popup from 'reactjs-popup'
-import TextEditor from './TextEditor'
+import TextEditor from '../texteditor/TextEditor'
 
 const NoteCardHeader = (props) => {
     const { notes, section } = props;
@@ -14,11 +14,11 @@ const NoteCardHeader = (props) => {
                 <div className="buttons">
                     {/* <button onClick={() => editNote(note)}>E</button>
                     <button onClick={() => deleteNote(noteGroupId, note.id)}>D</button> */}
+                    <Popup trigger={<button style={{width: '70px', height: '25px', marginLeft: '10px'}}>Edit</button>} modal closeOnDocumentClick>
+                            <TextEditor note={note}/>
+                    </Popup>
 
                 </div>
-                <Popup trigger={<button>Edit</button>} modal closeOnDocumentClick>
-                        <TextEditor note={note}/>
-                </Popup>
                 <div className="noteCardTag">
                     <span>{section}</span>
                 </div>

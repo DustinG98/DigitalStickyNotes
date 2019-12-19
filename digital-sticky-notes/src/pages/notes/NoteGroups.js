@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import NoteCardHeader from './components/NoteCardHeader'
+import NoteCardHeader from './components/notes/NoteCardHeader'
 import './notes.scss'
-import AddNote from './components/AddNote'
+import AddNote from './components/notes/AddNote'
 
 import { addNoteGroup, addNote } from './actions'
 
 const NoteGroups = (props) => {
     const { editNote, noteToEdit, finishEdit }  = props;
     const { noteGroups } = props;
-    // const [setNoteGroup, noteGroups, noteGroup, addNoteGroup, deleteNoteGroup, addNote, deleteNote] = useContext(NoteGroupsContext);
-    // const [noteGroups, setNoteGroups] = useState([
-    //     {id: 1, title: "Finished", notes: [
-    //         {id: 1, title: 'Example Note 1', subtitle: 'SUBTITTLES', description: 'lorem ipsum '},
-    //         {id: 2, title: 'Example Note 2', subtitle: 'SUBTITTLES', description: 'lorem ipsum '}
-    //     ]}
-    // ]);
 
     const [title, setTitle] = useState("")
     const [section, setSection] = useState("")
@@ -28,30 +21,7 @@ const NoteGroups = (props) => {
         setSection("")
          dispatch(addNoteGroup(title, section))
     }
-    
-    //delete note group
-    // const deleteNoteGroup = (id) => {
-    //     const newNoteGroups = noteGroups.filter(noteGroup => {
-    //         return noteGroup.id !== id;
-    //     })
-    //     setNoteGroups(newNoteGroups)
-    // }
 
-
-    //deleteNote
-    // const deleteNote = (noteGroupId, id) => {
-    //     noteGroups.map(noteGroup => {
-    //         if(noteGroup.id === noteGroupId) {
-    //            const newNotes = noteGroup.notes.filter(note => {
-    //                 return note.id !== id;
-    //             })
-    //             noteGroup.notes = newNotes;
-    //             setNotes([])
-    //         }
-    //         return null;
-    //     })
-    // }
-    //addNote
     const handleAddNote = () => {
         const { dispatch, noteGroupID } = props;
         const { text } = title;

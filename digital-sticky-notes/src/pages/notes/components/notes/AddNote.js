@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import '../notes.scss'
-import { addNote } from '../actions'
+import '../../notes.scss'
+import { addNote } from '../../actions'
 const AddNote = (props) => {
     const { noteGroupId } = props
     //INITIAL NOTE STATE
