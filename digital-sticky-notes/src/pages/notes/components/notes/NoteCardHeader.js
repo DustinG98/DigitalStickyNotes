@@ -14,8 +14,17 @@ const NoteCardHeader = (props) => {
                 <div className="buttons">
                     {/* <button onClick={() => editNote(note)}>E</button>
                     <button onClick={() => deleteNote(noteGroupId, note.id)}>D</button> */}
-                    <Popup trigger={<button style={{width: '70px', height: '25px', marginLeft: '10px'}}>Edit</button>} modal closeOnDocumentClick>
-                            <TextEditor note={note} style={ {zIndex: '9999'} }/>
+                    <Popup 
+                    
+                    trigger={<button style={{width: '70px', height: '25px', marginLeft: '10px'}}>View</button>}
+                     modal 
+                     closeOnDocumentClick={false}
+                    >
+                        {close => {
+                            return <div>
+                            <TextEditor close={close} note={note} style={ {zIndex: '9999'} }/>
+                        </div>
+                        }}
                     </Popup>
 
                 </div>

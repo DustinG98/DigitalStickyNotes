@@ -11,7 +11,7 @@ const {styles, customStyleFn} = createStyles(['font-size', 'font-weight', 'font-
 
 
 const TextEditor = (props) => {
-	const { note } = props;
+	const { note, close } = props;
 
 	let initialData = JSON.parse(localStorage.getItem(`content${note.id}`))
 
@@ -35,26 +35,33 @@ const TextEditor = (props) => {
 		localStorage.setItem(`content${note.id}`, content)
 	  }
 	return (
-		<div className='text-editor'>
+		<div className='text-editor' style={{ height: '80vh', overflowY: 'auto' }}>
 			{console.log(initialData)}
-			<button onClick={() => setReadOnly(!readOnly)}>Edit</button>
-			<button onClick={() => saveData()}>Save</button>
-			<EditorToolbar
-				editorState={editorState}
-				setEditorState={setEditorState}
+			<button className="close" style={{ zIndex: '999' }} onClick={close}>&times;</button>
+			<div className="toolbar" style={{ position: 'fixed', width: '49%', zIndex: '997' }}>
+				<EditorToolbar
+					editorState={editorState}
+					setEditorState={setEditorState}
+					readOnly={readOnly}
+					setReadOnly={setReadOnly}
+					saveData={saveData}
+					//pass styles as prop
+					styles={styles}
+				/>
+			</div>
+			<div style={{ marginTop: '15%' }}>
 
-				//pass styles as prop
-				styles={styles}
-			/>
-			<h2 style={{marginTop: '3%'}}>{note.title}</h2>
-			<Editor
-				editorState={editorState}
-				onChange={setEditorState}
-				placeholder={'Start Typing Here...'}
-				//pass customStyleFn as prop
-				customStyleFn={customStyleFn}
-				readOnly={readOnly}
-			/>
+				<h2 style={{marginTop: '3%'}}>{note.title}</h2>
+				<Editor
+					
+					editorState={editorState}
+					onChange={setEditorState}
+					placeholder={'Start Typing Here...'}
+					//pass customStyleFn as prop
+					customStyleFn={customStyleFn}
+					readOnly={readOnly}
+				/>
+			</div>
 		</div>
 	);
 }

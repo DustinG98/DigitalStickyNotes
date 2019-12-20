@@ -3,7 +3,7 @@ import React from 'react'
 import './edittoolbar.scss'
 
 // don't forget to declare styles in props!
-const EditorToolbar = ({editorState, setEditorState, styles}) => {
+const EditorToolbar = ({editorState, setEditorState, styles, readOnly, setReadOnly, saveData}) => {
 
     //declare state for conditional rendering of font size menu
 
@@ -50,6 +50,10 @@ const EditorToolbar = ({editorState, setEditorState, styles}) => {
 
     return (
         <div className="edit-toolbar">
+            <div>
+                <button onClick={() => setReadOnly(!readOnly)}>Edit</button>
+                <button onClick={() => saveData()}>Save</button>
+            </div>
             <div style={{display: 'flex'}}>
                 <p>Font Size</p>
                 {fontSizeOptions}
