@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 import { addNoteGroup } from './actions'
 
 const NoteGroups = (props) => {
-    const { noteGroups } = props;
+    const { noteGroups, searchTerm } = props;
     const [title, setTitle] = useState("")
     const [section, setSection] = useState("")
     //add note group
@@ -25,25 +25,12 @@ const NoteGroups = (props) => {
          dispatch(addNoteGroup(title, section))
     }
 
-    // const handleAddNote = () => {
-    //     const { dispatch, noteGroupID } = props;
-    //     const { text } = title;
-
-    //     if(text) {
-    //         setTitle("")
-    //         dispatch(addNoteGroup(noteGroupID, text))
-    //     }
-    //     return
-    // }
-
-
-
-    //handle submit
-    // const handleSubmit = event => {
-    //     event.preventDefault();
-    //     setNoteGroup({title: ""})
-    //     addNoteGroup(noteGroup)
-    // }
+    const filteredNoteGroups = noteGroups.filter(noteGroup => {
+        if(noteGroup.title.includes(searchTerm)) {
+            return noteGroup
+        }
+        return null;
+    })
 
     //handle change
     const handleTitleChange = event => {
@@ -65,7 +52,7 @@ const NoteGroups = (props) => {
             </div>
             <div className="noteGroups">
 
-                {noteGroups !== undefined ? noteGroups.map(noteGroup => {
+                {filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
                    return <Card className="noteGroup" key={noteGroup.id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
@@ -74,7 +61,16 @@ const NoteGroups = (props) => {
                             <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} section={noteGroup.section}/> 
                        </div>
                     </Card>
-                }) : null}
+                }) : filteredNoteGroups.map(noteGroup => {
+                    return <Card className="noteGroup" key={noteGroup.id}>
+                       {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
+                        <h2>{noteGroup.title}</h2>
+                       <AddNote noteGroupId={noteGroup.id} />
+                       <div style={{ overflowY: 'auto', width: '100%' }}>
+                            <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} section={noteGroup.section}/> 
+                       </div>
+                    </Card>
+                })}
                 
             </div>
         </div>
