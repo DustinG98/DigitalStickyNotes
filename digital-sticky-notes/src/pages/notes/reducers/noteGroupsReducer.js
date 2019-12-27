@@ -1,15 +1,17 @@
 import { CONSTANTS } from "../actions"
 
-const initialState = [
-    {   
-        id: 1, 
-        title: "Finished",
-        section: "JS",
-        notes: [
-            {id: 1, title: 'Example Note 1'},
-            {id: 2, title: 'Example Note 3'}
-        ]}
-]
+// const initialState = [
+//     {   
+//         id: 1, 
+//         title: "Finished",
+//         section: "JS",
+//         notes: [
+//             {id: 1, title: 'Example Note 1'},
+//             {id: 2, title: 'Example Note 3'}
+//         ]}
+// ]
+
+const initialState = []
 
 const noteGroupsReducer = (state = initialState, action) => {
     switch(action.type) {
