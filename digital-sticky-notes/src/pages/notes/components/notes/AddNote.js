@@ -29,7 +29,7 @@ const AddNote = (props) => {
                 <div>
                     <input type='text' name='title' placeholder="Title" value={title} onChange={(event) => handleChange(event)} />
                 </div>
-                {<button>Add Note!</button>}
+                {title !== "" ? <button>Add Note!</button> : null}
             </form>
         </div>
     )

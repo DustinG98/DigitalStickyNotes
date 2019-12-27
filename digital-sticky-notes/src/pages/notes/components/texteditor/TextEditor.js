@@ -34,11 +34,16 @@ const TextEditor = (props) => {
 		let content = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
 		localStorage.setItem(`content${note.id}`, content)
 	  }
+
+	  const closePopup = () => {
+		  saveData();
+		  close();
+	  }
 	return (
 		<div className='text-editor' style={{ height: '80vh', overflowY: 'auto' }}>
 			{console.log(initialData)}
 			
-			<button className="close" style={{ zIndex: '999' }} onClick={close}>&times;</button>
+			<button className="close" style={{ zIndex: '999' }} onClick={closePopup}>&times;</button>
 			<div className="toolbar" style={{ position: 'fixed', width: '49%', zIndex: '997' }}>
 				{readOnly === false ? `EDIT MODE` : `READ ONLY`}
 			
