@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import '../../notes.scss'
 import { addNote } from '../../actions'
+
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 const AddNote = (props) => {
     const { noteGroupId } = props
     //INITIAL NOTE STATE
@@ -27,9 +31,9 @@ const AddNote = (props) => {
             {/* ADD NEW NOTE FORM */}
             <form onSubmit={(event) => handleSubmit(event)}>
                 <div>
-                    <input type='text' name='title' placeholder="Title" value={title} onChange={(event) => handleChange(event)} />
+                    <TextField type='text' name='title' placeholder="Title" value={title} onChange={(event) => handleChange(event)} />
                 </div>
-                {title !== "" ? <button>Add Note!</button> : null}
+                {title !== "" ? <Button type="submit" color="primary" variant="contained">Add Note!</Button> : <Button type="submit" color="primary" variant="contained" disabled>Add Note!</Button>}
             </form>
         </div>
     )

@@ -7,6 +7,9 @@ import { connect } from 'react-redux'
 
 import { removeNote } from '../../actions'
 
+import Card from '@material-ui/core/Card'
+import Button from '@material-ui/core/Button'
+
  
 const NoteCardHeader = (props) => {
     const { notes, section, noteGroupID } = props;
@@ -19,14 +22,14 @@ const NoteCardHeader = (props) => {
     }
     return (
         (notes !== undefined ? notes.map(note => {
-            return <div key={note.id} className="noteCardHeader">
+            return <Card key={note.id} className="noteCardHeader">
             <div className="container">
                 <div className="buttons">
                     {/* <button onClick={() => editNote(note)}>E</button>
                     <button onClick={() => deleteNote(noteGroupId, note.id)}>D</button> */}
                     <Popup 
                     
-                    trigger={<button style={{width: '70px', height: '25px', marginLeft: '10px'}}>View</button>}
+                    trigger={<Button variant="outlined" color="primary">View</Button>}
                      modal 
                      closeOnDocumentClick={false}
                     >
@@ -36,17 +39,14 @@ const NoteCardHeader = (props) => {
                         </div>
                         }}
                     </Popup>
-                    <button onClick={() => handleRemoveNote(note.id)}>Delete</button>
+                    <Button variant="outlined" color="secondary" onClick={() => handleRemoveNote(note.id)}>Delete</Button>
                 </div>
                 <div className="noteCardTag">
                     <span>{section}</span>
                 </div>
             </div>
             <h2>{note.title}</h2>
-            <div>
-
-            </div>
-        </div>
+        </Card>
         }) : null)
         
     )

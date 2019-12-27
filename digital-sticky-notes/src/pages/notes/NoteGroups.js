@@ -4,10 +4,13 @@ import NoteCardHeader from './components/notes/NoteCardHeader'
 import './notes.scss'
 import AddNote from './components/notes/AddNote'
 
-import { addNoteGroup, addNote } from './actions'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+import { addNoteGroup } from './actions'
 
 const NoteGroups = (props) => {
-    const { editNote, noteToEdit, finishEdit }  = props;
     const { noteGroups } = props;
     const [title, setTitle] = useState("")
     const [section, setSection] = useState("")
@@ -50,22 +53,26 @@ const NoteGroups = (props) => {
     }
     return (
         <div>
-            <div>
-                <form onSubmit={e => handleAddNoteGroup(e)}>
-                    <input type="text" name="title" placeholder="Title" value={title} onChange={event => handleTitleChange(event)}/>
-                    <input type="text" name="section" placeholder="Section" value={section} onChange={event => handleSectionChange(event)}/>
-                    <button onClick={e => handleAddNoteGroup(e)}>Add Note Group</button>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+                <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', width: '40%' }}>
+                    <TextField required type="text" name="title" placeholder="Title" value={title} onChange={event => handleTitleChange(event)}/>
+                    <TextField required type="text" name="section" placeholder="Section" value={section} onChange={event => handleSectionChange(event)}/>
+                    {title && section !== "" ? 
+                    <Button variant="contained" color="primary" type="submit" onClick={e => handleAddNoteGroup(e)}>Add Note Group</Button> 
+                    : <Button variant="contained" color="primary" disabled>Add Note Group</Button>}
                 </form>
             </div>
             <div className="noteGroups">
 
                 {noteGroups !== undefined ? noteGroups.map(noteGroup => {
-                   return <div className="noteGroup" key={noteGroup.id}>
+                   return <Card className="noteGroup" key={noteGroup.id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
-                       <AddNote noteGroupId={noteGroup.id} noteToEdit={noteToEdit} finishEdit={finishEdit} />
-                       <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit} section={noteGroup.section}/>
-                    </div>
+                       <AddNote noteGroupId={noteGroup.id} />
+                       <div style={{ overflowY: 'auto', width: '100%' }}>
+                            <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} section={noteGroup.section}/> 
+                       </div>
+                    </Card>
                 }) : null}
                 
             </div>
