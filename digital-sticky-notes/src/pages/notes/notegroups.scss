@@ -4,6 +4,7 @@ $phone: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 990;
     @media screen and (max-width: $phone) {
         form {
             display: flex;

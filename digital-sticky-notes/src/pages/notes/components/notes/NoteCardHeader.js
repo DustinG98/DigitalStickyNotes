@@ -35,8 +35,8 @@ const NoteCardHeader = (props) => {
                      closeOnDocumentClick={false}
                     >
                         {close => {
-                            return <div>
-                            <TextEditor close={close} note={note} style={ {zIndex: '9999'} }/>
+                            return <div style={ {zIndex: '999'} }> 
+                            <TextEditor close={close} note={note} />
                         </div>
                         }}
                     </Popup>
