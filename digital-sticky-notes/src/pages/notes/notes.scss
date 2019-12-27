@@ -1,6 +1,8 @@
+$phone: 500px;
+
 
 .noteGroup {
-    border: 2px solid black;
+    border: 1px solid rgba(134, 134, 134, 0.356);
 }
 .noteCardHeader{
     width: 100%;
@@ -13,7 +15,8 @@
     align-items: center;
     margin: 5% 0;
     text-align: center;
-
+    padding: 2%;
+    border: 1px solid rgba(134, 134, 134, 0.356);
 
     h2{
         position: relative;
@@ -27,7 +30,7 @@
     .buttons{
         display: flex;
         align-self: flex-start;
-        justify-content: flex-start;
+        justify-content: space-evenly;
         width: 80%;
         margin-top: 2%;
     }
@@ -64,6 +67,9 @@
     align-items: center;
     border-radius: 5%;
     overflow-y: auto;
+    @media screen and (max-width: $phone) {
+        min-width: 100%;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -87,6 +93,6 @@
     justify-content: flex-start;
     display: flex;
     overflow-x: auto;
-    border: 2px solid black;
     padding: 1%;
+
 }

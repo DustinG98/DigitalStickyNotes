@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import NoteCardHeader from './components/notes/NoteCardHeader'
 import './notes.scss'
+import './notegroups.scss'
 import AddNote from './components/notes/AddNote'
 
 import Card from '@material-ui/core/Card'
@@ -53,7 +54,7 @@ const NoteGroups = (props) => {
     }
     return (
         <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+            <div className="noteGroupForm" >
                 <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', width: '40%' }}>
                     <TextField required type="text" name="title" placeholder="Title" value={title} onChange={event => handleTitleChange(event)}/>
                     <TextField required type="text" name="section" placeholder="Section" value={section} onChange={event => handleSectionChange(event)}/>

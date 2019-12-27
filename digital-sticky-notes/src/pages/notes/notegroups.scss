@@ -1,3 +1,22 @@
-.noteGroup {
-    border: 2px solid black;
+$phone: 500px;
+
+.noteGroupForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: $phone) {
+        form {
+            display: flex;
+            flex-direction: column;
+            min-width: 100%;
+            input {
+                margin-bottom: 3%;
+            }
+            button {
+                margin-top: 3%;
+                width: 70%;
+                margin-bottom: 5%;
+            }
+        }
+    }
 }
