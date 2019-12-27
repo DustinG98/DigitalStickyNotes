@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SignIn = () => {
+const SignIn = (props) => {
     //SIGN IN FORM
     return (
         <div>
@@ -10,7 +10,7 @@ const SignIn = () => {
                 <input name="email" type="email" placeholder="Email"/>
                 <input name="password" type="password" placeholder="Password"/>
                 <div className="user-buttons">
-                    <button>Sign In</button>
+                    <button onClick={(e) => props.login(e)}>Sign In</button>
                     <Link to="/login/sign-up">Need an account?</Link>
                 </div>
                 
