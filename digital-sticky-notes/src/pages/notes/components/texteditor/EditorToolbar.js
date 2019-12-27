@@ -51,7 +51,7 @@ const EditorToolbar = ({editorState, setEditorState, styles, readOnly, setReadOn
     return (
         <div className="edit-toolbar">
             <div>
-                <button onClick={() => setReadOnly(!readOnly)}>Edit</button>
+                {readOnly === true ? <button onClick={() => setReadOnly(!readOnly)}>Edit</button> : null}
                 <button onClick={() => saveData()}>Save</button>
             </div>
             <div style={{display: 'flex'}}>

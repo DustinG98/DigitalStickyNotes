@@ -37,8 +37,11 @@ const TextEditor = (props) => {
 	return (
 		<div className='text-editor' style={{ height: '80vh', overflowY: 'auto' }}>
 			{console.log(initialData)}
+			
 			<button className="close" style={{ zIndex: '999' }} onClick={close}>&times;</button>
 			<div className="toolbar" style={{ position: 'fixed', width: '49%', zIndex: '997' }}>
+				{readOnly === false ? `EDIT MODE` : `READ ONLY`}
+			
 				<EditorToolbar
 					editorState={editorState}
 					setEditorState={setEditorState}
@@ -50,7 +53,6 @@ const TextEditor = (props) => {
 				/>
 			</div>
 			<div style={{ marginTop: '15%' }}>
-
 				<h2 style={{marginTop: '3%'}}>{note.title}</h2>
 				<Editor
 					
