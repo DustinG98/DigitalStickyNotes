@@ -3,10 +3,20 @@ import '../../notes.scss'
 import Popup from 'reactjs-popup'
 import TextEditor from '../texteditor/TextEditor'
 
-const NoteCardHeader = (props) => {
-    const { notes, section } = props;
-    
+import { connect } from 'react-redux'
 
+import { removeNote } from '../../actions'
+
+ 
+const NoteCardHeader = (props) => {
+    const { notes, section, noteGroupID } = props;
+    
+    const handleRemoveNote = (id) => {
+        const { dispatch } = props;
+        
+        dispatch(removeNote(noteGroupID, id))
+
+    }
     return (
         (notes !== undefined ? notes.map(note => {
             return <div key={note.id} className="noteCardHeader">
@@ -26,7 +36,7 @@ const NoteCardHeader = (props) => {
                         </div>
                         }}
                     </Popup>
-
+                    <button onClick={() => handleRemoveNote(note.id)}>Delete</button>
                 </div>
                 <div className="noteCardTag">
                     <span>{section}</span>
@@ -42,4 +52,8 @@ const NoteCardHeader = (props) => {
     )
 }
 
-export default NoteCardHeader;
+const mapStateToProps = state => ({
+    noteGroups: state.noteGroups
+  })
+
+export default connect(mapStateToProps)(NoteCardHeader)

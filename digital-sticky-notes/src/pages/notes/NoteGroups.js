@@ -9,7 +9,6 @@ import { addNoteGroup, addNote } from './actions'
 const NoteGroups = (props) => {
     const { editNote, noteToEdit, finishEdit }  = props;
     const { noteGroups } = props;
-
     const [title, setTitle] = useState("")
     const [section, setSection] = useState("")
     //add note group
@@ -22,16 +21,18 @@ const NoteGroups = (props) => {
          dispatch(addNoteGroup(title, section))
     }
 
-    const handleAddNote = () => {
-        const { dispatch, noteGroupID } = props;
-        const { text } = title;
+    // const handleAddNote = () => {
+    //     const { dispatch, noteGroupID } = props;
+    //     const { text } = title;
 
-        if(text) {
-            setTitle("")
-            dispatch(addNoteGroup(noteGroupID, text))
-        }
-        return
-    }
+    //     if(text) {
+    //         setTitle("")
+    //         dispatch(addNoteGroup(noteGroupID, text))
+    //     }
+    //     return
+    // }
+
+
 
     //handle submit
     // const handleSubmit = event => {
@@ -62,8 +63,8 @@ const NoteGroups = (props) => {
                    return <div className="noteGroup" key={noteGroup.id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
-                       <AddNote addNote={handleAddNote} noteGroupId={noteGroup.id} noteToEdit={noteToEdit} finishEdit={finishEdit} />
-                       <NoteCardHeader noteGroupId={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit} section={noteGroup.section}/>
+                       <AddNote noteGroupId={noteGroup.id} noteToEdit={noteToEdit} finishEdit={finishEdit} />
+                       <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} editNote={editNote} addNote={addNote} noteToEdit={noteToEdit} finishEdit={finishEdit} section={noteGroup.section}/>
                     </div>
                 }) : null}
                 

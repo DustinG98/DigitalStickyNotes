@@ -6,3 +6,10 @@ export const addNote = (noteGroupID, text) => {
         payload: {text, noteGroupID}
     }
 }
+
+export const removeNote = (noteGroupID, noteID) => {
+    return {
+        type: CONSTANTS.REMOVE_NOTE,
+        payload: { noteGroupID, noteID }
+    }
+}
