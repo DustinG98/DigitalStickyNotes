@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom'
 
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import axios from 'axios'
 import { TextField } from 'formik-material-ui';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 const SignUp = () => {
     //SIGN UP FORM
