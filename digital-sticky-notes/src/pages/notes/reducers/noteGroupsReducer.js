@@ -1,5 +1,7 @@
 import { CONSTANTS } from "../actions"
 
+import { axiosWithAuth } from '../../../auth/axiosWithAuth'
+
 // const initialState = [
 //     {   
 //         id: 1, 
@@ -11,10 +13,28 @@ import { CONSTANTS } from "../actions"
 //         ]}
 // ]
 
-const initialState = []
+
+let initialState = [];
+
+
+
+
+const addNoteGroup = (noteGroup) => {
+    const user_id = localStorage.getItem("user_id")
+    axiosWithAuth().post(`/${user_id}/notes`, {
+        title: noteGroup.title,
+        section: noteGroup.section
+    })
+        .then(res => console.log(res))
+}
+
+
+// const initialState = []
 
 const noteGroupsReducer = (state = initialState, action) => {
     switch(action.type) {
+        case CONSTANTS.FETCH_INIT_STATE:
+            return action.payload.data;
         case CONSTANTS.ADD_NOTE_GROUP:
             
             const newNoteGroup = {
@@ -23,6 +43,7 @@ const noteGroupsReducer = (state = initialState, action) => {
                 id: Date.now(),
                 notes: []
             }
+            addNoteGroup(newNoteGroup);
             return [...state, newNoteGroup];
         case CONSTANTS.ADD_NOTE:
             const newNote = {

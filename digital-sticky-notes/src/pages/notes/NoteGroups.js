@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import NoteCardHeader from './components/notes/NoteCardHeader'
 import './notes.scss'
@@ -9,12 +9,22 @@ import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-import { addNoteGroup } from './actions'
+import { addNoteGroup, fetchInitState } from './actions'
+import { axiosWithAuth } from '../../auth/axiosWithAuth';
 
 const NoteGroups = (props) => {
     const { noteGroups, searchTerm } = props;
     const [title, setTitle] = useState("")
     const [section, setSection] = useState("")
+    const { dispatch } = props;
+    useEffect(() => {
+        const user_id = localStorage.getItem("user_id")
+         axiosWithAuth().get(`/${user_id}/notes`)
+            .then(res => {
+                dispatch(fetchInitState(res.data))
+            })
+    }, [dispatch])
+
     //add note group
     const handleAddNoteGroup = (e) => {
         e.preventDefault()
@@ -53,7 +63,7 @@ const NoteGroups = (props) => {
             <div className="noteGroups">
 
                 {filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
-                   return <Card className="noteGroup" key={noteGroup.id}>
+                   return <Card className="noteGroup" key={noteGroup._id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
                        <AddNote noteGroupId={noteGroup.id} />
@@ -62,7 +72,7 @@ const NoteGroups = (props) => {
                        </div>
                     </Card>
                 }) : filteredNoteGroups.map(noteGroup => {
-                    return <Card className="noteGroup" key={noteGroup.id}>
+                    return <Card className="noteGroup" key={noteGroup._id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
                        <AddNote noteGroupId={noteGroup.id} />

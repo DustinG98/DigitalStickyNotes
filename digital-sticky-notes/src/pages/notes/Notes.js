@@ -4,6 +4,9 @@ import SearchForm from './components/searchform/SearchForm'
 
 const Notes = () => {
         const [ searchTerm, setSearchTerm ] = useState("")
+
+
+
       return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
             <h1>Notes</h1>
