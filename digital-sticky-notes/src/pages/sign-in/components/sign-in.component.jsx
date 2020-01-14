@@ -68,6 +68,7 @@ const CreateForm = (props) => {
                     localStorage.setItem("user_id", res.headers["user_id"])
                     resetForm()
                     history.push('/notes')
+                    props.setIsToken(true)
                     console.log(res)
                 })
             

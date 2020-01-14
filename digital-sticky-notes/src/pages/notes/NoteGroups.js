@@ -20,6 +20,7 @@ const NoteGroups = (props) => {
     useEffect(() => {
        fetchInitData()
         .then(res => dispatch(fetchInitState(res)))
+        .catch(err => console.log(err))
     }, [dispatch])
 
     //add note group
