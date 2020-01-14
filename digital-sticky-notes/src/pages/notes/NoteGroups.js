@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import { addNoteGroup, fetchInitState } from './actions'
-import { axiosWithAuth } from '../../auth/axiosWithAuth';
+import { fetchInitData } from './backend-requests/fetchInitData'
 
 const NoteGroups = (props) => {
     const { noteGroups, searchTerm } = props;
@@ -18,11 +18,8 @@ const NoteGroups = (props) => {
     const [section, setSection] = useState("")
     const { dispatch } = props;
     useEffect(() => {
-        const user_id = localStorage.getItem("user_id")
-         axiosWithAuth().get(`/${user_id}/notes`)
-            .then(res => {
-                dispatch(fetchInitState(res.data))
-            })
+       fetchInitData()
+        .then(res => dispatch(fetchInitState(res)))
     }, [dispatch])
 
     //add note group
