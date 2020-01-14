@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 import { TextField } from 'formik-material-ui';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios'
 
 const SignUp = () => {
     //SIGN UP FORM
@@ -52,8 +53,16 @@ const FormikSignUpForm = withFormik({
 
     }),
     handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
-        console.log(values)
-        resetForm();
+        axios.post('http://localhost:5000/api/auth/users/register', {
+            username: values.username,
+            email: values.email,
+            password: values.password
+        })
+            .then(res => {
+                console.log(res)
+                resetForm();
+            })
+        
         
     }
 })(SignUp)
