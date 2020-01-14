@@ -32,7 +32,6 @@ const NoteGroups = (props) => {
         setSection("")
          dispatch(addNoteGroup(title, section))
     }
-
     const filteredNoteGroups = noteGroups.filter(noteGroup => {
         if(noteGroup.title.includes(searchTerm)) {
             return noteGroup
@@ -59,12 +58,13 @@ const NoteGroups = (props) => {
                 </form>
             </div>
             <div className="noteGroups">
-
+                
                 {filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
-                   return <Card className="noteGroup" key={noteGroup._id}>
+                   return <Card className="noteGroup" key={String(noteGroup._id)}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
+                       {console.log(noteGroup._id)}
                         <h2>{noteGroup.title}</h2>
-                       <AddNote noteGroupId={noteGroup.id} />
+                       <AddNote noteGroupId={String(noteGroup._id)} />
                        <div style={{ overflowY: 'auto', width: '100%' }}>
                             <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} section={noteGroup.section}/> 
                        </div>
@@ -73,9 +73,9 @@ const NoteGroups = (props) => {
                     return <Card className="noteGroup" key={noteGroup._id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
-                       <AddNote noteGroupId={noteGroup.id} />
+                       <AddNote noteGroupId={noteGroup._id} />
                        <div style={{ overflowY: 'auto', width: '100%' }}>
-                            <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} section={noteGroup.section}/> 
+                            <NoteCardHeader noteGroupID={noteGroup._id} key={noteGroup._id} notes={noteGroup.notes} section={noteGroup.section}/> 
                        </div>
                     </Card>
                 })}

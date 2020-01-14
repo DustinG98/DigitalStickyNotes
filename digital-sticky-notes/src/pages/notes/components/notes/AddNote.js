@@ -17,7 +17,6 @@ const AddNote = (props) => {
         event.preventDefault();
         setTitle("")
         const { dispatch } = props
-
         dispatch(addNote(noteGroupId, title))
     }
 

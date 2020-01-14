@@ -1,7 +1,8 @@
 import { CONSTANTS } from "../actions"
 
-import { axiosWithAuth } from '../../../auth/axiosWithAuth'
 
+import { addNoteGroup } from '../backend-requests/addNoteGroup'
+import { addNote } from '../backend-requests/addNote'
 // const initialState = [
 //     {   
 //         id: 1, 
@@ -18,17 +19,6 @@ let initialState = [];
 
 
 
-
-const addNoteGroup = (noteGroup) => {
-    const user_id = localStorage.getItem("user_id")
-    axiosWithAuth().post(`/${user_id}/notes`, {
-        title: noteGroup.title,
-        section: noteGroup.section
-    })
-        .then(res => console.log(res))
-}
-
-
 // const initialState = []
 
 const noteGroupsReducer = (state = initialState, action) => {
@@ -36,7 +26,6 @@ const noteGroupsReducer = (state = initialState, action) => {
         case CONSTANTS.FETCH_INIT_STATE:
             return action.payload.data;
         case CONSTANTS.ADD_NOTE_GROUP:
-            
             const newNoteGroup = {
                 title: action.payload.title,
                 section: action.payload.section,
@@ -46,12 +35,13 @@ const noteGroupsReducer = (state = initialState, action) => {
             addNoteGroup(newNoteGroup);
             return [...state, newNoteGroup];
         case CONSTANTS.ADD_NOTE:
+            
             const newNote = {
-                title: action.payload.text,
-                id: Date.now()
+                title: action.payload.text
             }
+            addNote(action.payload.noteGroupID, newNote)
             let newState = state.map(noteGroup => {
-                if(noteGroup.id === action.payload.noteGroupID) {
+                if(noteGroup._id === action.payload.noteGroupID) {
                     return {
                         ...noteGroup,
                         notes: [...noteGroup.notes, newNote]

@@ -45,7 +45,6 @@ const SignIn = (props) => {
 
 const CreateForm = (props) => {
     const history = useHistory();
-    console.log(props)
     const FormikSignInForm = withFormik({
         mapPropsToValues({ email, password }) {
             return {
@@ -69,7 +68,10 @@ const CreateForm = (props) => {
                     resetForm()
                     history.push('/notes')
                     props.setIsToken(true)
-                    console.log(res)
+                })
+                .catch(err => {
+                    console.log(err)
+                    resetForm()
                 })
             
             
