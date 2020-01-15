@@ -53,7 +53,7 @@ const FormikSignUpForm = withFormik({
 
     }),
     handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
-        axios.post('http://localhost:5000/api/auth/users/register', {
+        axios.post('https://notes4you-be.herokuapp.com/api/auth/users/register', {
             username: values.username,
             email: values.email,
             password: values.password
