@@ -66,7 +66,7 @@ const NoteGroups = (props) => {
                         <h2>{noteGroup.title}</h2>
                        <AddNote noteGroupId={String(noteGroup._id)} />
                        <div style={{ overflowY: 'auto', width: '100%' }}>
-                            <NoteCardHeader noteGroupID={noteGroup.id} key={noteGroup.id} notes={noteGroup.notes} section={noteGroup.section}/> 
+                            <NoteCardHeader noteGroupID={noteGroup._id} key={noteGroup._id} notes={noteGroup.notes} section={noteGroup.section}/> 
                        </div>
                     </Card>
                 }) : filteredNoteGroups.map(noteGroup => {

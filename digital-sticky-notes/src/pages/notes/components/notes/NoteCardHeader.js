@@ -40,7 +40,7 @@ const NoteCardHeader = (props) => {
                         </div>
                         }}
                     </Popup>
-                    <Button variant="outlined" color="secondary" onClick={() => handleRemoveNote(note.id)}><DeleteForeverIcon/></Button>
+                    <Button variant="outlined" color="secondary" onClick={() => handleRemoveNote(note._id)}><DeleteForeverIcon/></Button>
                 </div>
                 <div className="noteCardTag">
                     <span>{section}</span>
