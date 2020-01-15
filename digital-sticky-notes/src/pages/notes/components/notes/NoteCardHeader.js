@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 
 import { removeNote } from '../../actions'
 
+import { removeNoteBe } from '../../backend-requests/removeNote'
+
 import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -15,9 +17,9 @@ import OpenWithIcon from '@material-ui/icons/OpenWith';
 const NoteCardHeader = (props) => {
     const { notes, section, noteGroupID } = props;
     
-    const handleRemoveNote = (id) => {
+    const handleRemoveNote = async (id) => {
         const { dispatch } = props;
-        
+        await removeNoteBe(noteGroupID, id);
         dispatch(removeNote(noteGroupID, id))
 
     }

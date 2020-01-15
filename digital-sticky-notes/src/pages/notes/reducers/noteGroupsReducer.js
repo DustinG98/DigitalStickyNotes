@@ -72,7 +72,7 @@ const noteGroupsReducer = (state = initialState, action) => {
                     return noteGroup;
                 }
             })
-            removeNote(action.payload.noteGroupID, action.payload.noteID)
+            
             return newStateNoteGroups;
         default: 
             return state;
