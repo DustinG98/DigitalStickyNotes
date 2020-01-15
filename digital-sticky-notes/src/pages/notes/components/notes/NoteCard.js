@@ -7,7 +7,7 @@ const Notes = ({notes, deleteNote, editNote}) => {
     const noteList = notes.length ? (
         notes.map(note => {
             return (
-                <div className="noteCard" key={note.id}>
+                <div className="noteCard" key={note._id}>
                     {/* NOTE CARDS */}
                     <div classname="bodySection">
                         <h3>{note.subtitle}</h3>
