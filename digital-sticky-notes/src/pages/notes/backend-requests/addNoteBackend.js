@@ -1,9 +1,9 @@
 
 import { axiosWithAuth } from '../../../auth/axiosWithAuth';
 
-export const removeNoteBe = async (noteGroupId, noteId) => {
+export const addNoteBackend = async (noteGroupId, note) => {
     const user_id = localStorage.getItem("user_id")
-    await axiosWithAuth().delete(`/${user_id}/notes/${noteGroupId}/${noteId}`)
+    await axiosWithAuth().post(`/${user_id}/notes/${noteGroupId}/`, note)
        .then(res => {
            console.log(res)
        })

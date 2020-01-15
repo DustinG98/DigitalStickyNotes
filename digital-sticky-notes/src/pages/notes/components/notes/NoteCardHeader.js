@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 import { removeNote } from '../../actions'
 
-import { removeNoteBe } from '../../backend-requests/removeNote'
+import { removeNoteBackend } from '../../backend-requests/removeNoteBackend'
 
 import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
@@ -19,9 +19,8 @@ const NoteCardHeader = (props) => {
     
     const handleRemoveNote = async (id) => {
         const { dispatch } = props;
-        await removeNoteBe(noteGroupID, id);
+        await removeNoteBackend(noteGroupID, id);
         dispatch(removeNote(noteGroupID, id))
-
     }
     return (
         (notes !== undefined ? notes.map(note => {

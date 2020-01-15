@@ -2,8 +2,6 @@ import { CONSTANTS } from "../actions"
 
 
 import { addNoteGroup } from '../backend-requests/addNoteGroup'
-import { addNote } from '../backend-requests/addNote'
-import { removeNote } from "../backend-requests/removeNote";
 // const initialState = [
 //     {   
 //         id: 1, 
@@ -36,11 +34,9 @@ const noteGroupsReducer = (state = initialState, action) => {
             addNoteGroup(newNoteGroup);
             return [...state, newNoteGroup];
         case CONSTANTS.ADD_NOTE:
-            
             const newNote = {
                 title: action.payload.text
             }
-            addNote(action.payload.noteGroupID, newNote)
             let newState = state.map(noteGroup => {
                 if(noteGroup._id === action.payload.noteGroupID) {
                     return {

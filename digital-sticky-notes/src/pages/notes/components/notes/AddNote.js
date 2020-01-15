@@ -5,6 +5,7 @@ import { addNote } from '../../actions'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { addNoteBackend } from '../../backend-requests/addNoteBackend'
 
 const AddNote = (props) => {
     const { noteGroupId } = props
@@ -13,9 +14,12 @@ const AddNote = (props) => {
 
 
     //HANDLE SUBMIT -- RESETS FORM -- IF OBJECT IS EMPTY ADDS A NEW NOTE -- IF OBJECT IS NOT EMPTY IT FINISHES THE EDIT
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
         setTitle("")
+        await addNoteBackend(noteGroupId, {
+            title: title
+        })
         const { dispatch } = props
         dispatch(addNote(noteGroupId, title))
     }
