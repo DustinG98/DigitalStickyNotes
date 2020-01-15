@@ -55,15 +55,15 @@ const noteGroupsReducer = (state = initialState, action) => {
         case CONSTANTS.REMOVE_NOTE:
             let theNoteGroup;
             state.forEach(noteGroup => {
-                if(noteGroup.id === action.payload.noteGroupID) {
+                if(noteGroup._id === action.payload.noteGroupID) {
                     theNoteGroup = noteGroup
                 }
             })
             let newNotes = theNoteGroup.notes.filter(note => {
-                return note.id !== action.payload.noteID
+                return note._id !== action.payload.noteID
             })
             let newStateNoteGroups = state.map(noteGroup => {
-                if(noteGroup.id === action.payload.noteGroupID) {
+                if(noteGroup._id === action.payload.noteGroupID) {
                     return {
                         ...noteGroup,
                         notes: newNotes
