@@ -3,6 +3,7 @@ import { CONSTANTS } from "../actions"
 
 import { addNoteGroup } from '../backend-requests/addNoteGroup'
 import { addNote } from '../backend-requests/addNote'
+import { removeNote } from "../backend-requests/removeNote";
 // const initialState = [
 //     {   
 //         id: 1, 
@@ -53,6 +54,7 @@ const noteGroupsReducer = (state = initialState, action) => {
             return newState;
         case CONSTANTS.REMOVE_NOTE:
             let theNoteGroup;
+            removeNote(action.payload.noteGroupID, action.payload.noteID)
             state.forEach(noteGroup => {
                 if(noteGroup.id === action.payload.noteGroupID) {
                     theNoteGroup = noteGroup

@@ -10,24 +10,6 @@ import axios from 'axios'
 
 const SignIn = (props) => {
     //SIGN IN FORM
-
-    // const [credentials, setCredentials] = useState({
-    //     email: "",
-    //     password: ""
-    // })
-    // const handlesChange = (e) => {
-    //     setCredentials({ ...credentials,[e.target.name]: e.target.value })
-    // }
-
-    // let login = (e) => {
-    //     e.preventDefault();
-    //     axios.post('http://localhost:5000/api/auth/users/signin', credentials)
-    //         .then(res => {
-    //             localStorage.setItem("auth-token", res.headers["auth-token"])
-    //             localStorage.setItem("user_id", res.headers["user_id"])
-    //             history.push('/notes')
-    //         })
-    // }
     return (
         <Card className="form">
             <Form>
