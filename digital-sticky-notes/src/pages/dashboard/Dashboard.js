@@ -11,8 +11,7 @@ import {Route} from 'react-router-dom'
 const Dashboard = ({ signOut }) => {
     return (
         <div className="mainContainer">
-            <SideMenu signOut={signOut}/>
-            
+            <Route path="/dashboard" render={props => <SideMenu signOut={signOut} {...props}/>}/>
             <div className="rightCont">
                 <Route exact path="/dashboard/notebooks" render={props => <Notebooks {...props}/>}/>
                 <Route path="/dashboard/account" render={props => <MyAccount {...props}/>}/>

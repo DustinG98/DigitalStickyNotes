@@ -5,6 +5,7 @@ import SignInPage from './pages/sign-in/sign-in-page'
 import './App.scss'
 import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './pages/dashboard/Dashboard';
+import Notebook from './pages/dashboard/Notebook/Notebook'
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
         {/* ROUTES FOR NAVBAR */}
         <Route exact path="/" render={props => <WelcomePage signOut={signOut} isToken={isToken} setToken={setToken} {...props}/>}/>
         <PrivateRoute path="/dashboard"> <Dashboard signOut={signOut}/> </PrivateRoute>
+        <PrivateRoute path='/notebook/:id/:noteId'> <Notebook/> </PrivateRoute>
         <Route path="/login" render={props => <SignInPage {...props} setIsToken={setToken}/>}/>
       </div>
     )

@@ -15,6 +15,8 @@ import Modal from '@material-ui/core/Modal';
 
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'; 
 
+import {useHistory} from 'react-router-dom'
+
 
 const theme = createMuiTheme({
     palette: {
@@ -44,6 +46,7 @@ const NoteGroups = (props) => {
     const [section, setSection] = useState("")
     const [isLoading, setIsLoading] = useState(true)
 
+    const history = useHistory()
 
     const { dispatch } = props;
     useEffect(() => {
@@ -81,6 +84,11 @@ const NoteGroups = (props) => {
     const handleSectionChange = event => {
         setSection(event.target.value)
     }
+
+    //handle open notegroup
+    const handleOpenNoteGroup = (notebook) => {
+        history.push(`/notebook/${notebook._id}/${notebook.notes[0]._id}`)
+    }
     return (
         <div>
             <Modal 
@@ -110,7 +118,7 @@ const NoteGroups = (props) => {
                     <h2># Of Notes</h2>
                 </div>
                 {isLoading === false ? filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
-                   return <Card className="noteGroup" key={String(noteGroup._id)}>
+                   return <Card className="noteGroup" key={String(noteGroup._id)} onClick={() => handleOpenNoteGroup(noteGroup)}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         
                         <h2>{noteGroup.title}</h2>
@@ -121,7 +129,7 @@ const NoteGroups = (props) => {
                         <h2>{noteGroup.notes.length}</h2>
                     </Card>
                 }) : filteredNoteGroups.map(noteGroup => {
-                    return <Card className="noteGroup" key={noteGroup._id}>
+                    return <Card className="noteGroup" key={noteGroup._id} onClick={() => handleOpenNoteGroup(noteGroup)}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
                        {/* <AddNote noteGroupId={noteGroup._id} />
