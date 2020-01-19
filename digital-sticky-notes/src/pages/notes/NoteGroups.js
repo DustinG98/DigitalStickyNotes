@@ -49,7 +49,7 @@ const NoteGroups = (props) => {
     return (
         <div>
             <div className="noteGroupForm" >
-                <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', width: '40%' }}>
+                <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <TextField required type="text" name="title" placeholder="Title" value={title} onChange={event => handleTitleChange(event)}/>
                     <TextField required type="text" name="section" placeholder="Section" value={section} onChange={event => handleSectionChange(event)}/>
                     {title && section !== "" ? 
@@ -62,21 +62,21 @@ const NoteGroups = (props) => {
                 {filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
                    return <Card className="noteGroup" key={String(noteGroup._id)}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
-                       {console.log(noteGroup._id)}
+
                         <h2>{noteGroup.title}</h2>
-                       <AddNote noteGroupId={String(noteGroup._id)} />
+                       {/* <AddNote noteGroupId={String(noteGroup._id)} />
                        <div style={{ overflowY: 'auto', width: '100%' }}>
                             <NoteCardHeader noteGroupID={noteGroup._id} key={noteGroup._id} notes={noteGroup.notes} section={noteGroup.section}/> 
-                       </div>
+                       </div> */}
                     </Card>
                 }) : filteredNoteGroups.map(noteGroup => {
                     return <Card className="noteGroup" key={noteGroup._id}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
                         <h2>{noteGroup.title}</h2>
-                       <AddNote noteGroupId={noteGroup._id} />
+                       {/* <AddNote noteGroupId={noteGroup._id} />
                        <div style={{ overflowY: 'auto', width: '100%' }}>
                             <NoteCardHeader noteGroupID={noteGroup._id} key={noteGroup._id} notes={noteGroup.notes} section={noteGroup.section}/> 
-                       </div>
+                       </div> */}
                     </Card>
                 })}
                 

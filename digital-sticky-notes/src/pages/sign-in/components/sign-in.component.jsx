@@ -48,7 +48,7 @@ const CreateForm = (props) => {
                     localStorage.setItem("auth-token", res.headers["auth-token"])
                     localStorage.setItem("user_id", res.headers["user_id"])
                     resetForm()
-                    history.push('/notes')
+                    history.push('/dashboard')
                     props.setIsToken(true)
                 })
                 .catch(err => {
