@@ -15,10 +15,12 @@
         height: 20px;
         width: 80%;
         padding: 10px 10px;
-        margin-left: -10px;
         color: white;
         font-size: 1rem;
         font-weight: 700;
         background-color: #A4D2FF;
+    }
+    input::placeholder {
+        color: white;
     }
 }

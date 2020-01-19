@@ -5,6 +5,7 @@
         align-items: center;
         justify-content: space-between;
         color: #2C6095;
+        height: 10vh;
         .searchBox {
             display: flex;
             align-items: center;
@@ -19,5 +20,8 @@
                 background-color: transparent;
             }
         }
+    }
+    .allNotebooks {
+        height: 85vh;
     }
 }

@@ -3,22 +3,12 @@ import NoteGroups from '../NoteGroups'
 import SearchForm from '../components/searchform/SearchForm'
 import SearchIcon from '@material-ui/icons/Search';
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'; 
 
-import {Animated} from 'react-animated-css'
+
 
 import './notebooks.scss'
 
-const theme = createMuiTheme({
-  palette: {
-      primary: {
-          main: "#67B3FF"
-      },
-      secondary: {
-        main: "#E33D3D"
-    }
-  }
-})
+
 
 const Notebooks = () => {
         const [ searchTerm, setSearchTerm ] = useState("")
@@ -38,8 +28,10 @@ const Notebooks = () => {
                 </div>
               </div>
             </div>
+            <div className="allNotebooks">
               {/* NOTES PAGE - ADD NOTE FORM & CURRENT NOTES - PASSING PROPS */}
                   <NoteGroups searchTerm={searchTerm}/>
+            </div>
               {/* <NoteCard notes={notes} /> */}
           </div>
       )

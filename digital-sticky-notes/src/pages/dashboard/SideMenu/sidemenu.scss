@@ -5,11 +5,11 @@
     width: 25%;
     height: 100vh;
     background-color: #A4D2FF;
-    border: 7px solid white;
+    border: 7px solid #2C6095;
 
     .link {
-        border-top: 7px solid white;
-        border-bottom: 7px solid white;
+        border-top: 7px solid #2C6095;
+        border-bottom: 7px solid #2C6095;
         width: 100%;
         margin-top: -7px;
         .activeLink {
@@ -38,20 +38,20 @@
         justify-content: center;
         align-items: center;
         color: white;
-        border-top: 7px solid white;
-        border-bottom: 7px solid white;
+        border-top: 7px solid #2C6095;
+        border-bottom: 7px solid #2C6095;
         align-self: flex-start;
         overflow: hidden;
-        height: 200px;
+        height: 10em;
         h2 {
             font-size: 1.5rem;
         }
         .userImg {
             border-radius: 50%;
-            border: 2px solid white;
+            border: 2px solid #2C6095;
             overflow: hidden;
-            width: auto;
-            height: 60%;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
             display: flex;
             justify-content: center;

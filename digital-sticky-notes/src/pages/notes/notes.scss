@@ -54,16 +54,19 @@ $phone: 500px;
 }
 .noteGroup{
     padding: 0 1%;
-    padding-bottom: 2%;
     background-color: gray;
     width: 100%;
     margin: 1% 1%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-radius: 5%;
     min-height: 100px;
+    color: white;
+    padding: 0 5%;
+    h2 {
+        font-size: 2rem;
+    }
 
     @media screen and (max-width: $phone) {
         min-width: 100%;
@@ -86,11 +89,29 @@ $phone: 500px;
 
 .noteGroups {
     width: 100%;
-    height: 60vh;
+    height: 85vh;
     align-items: center;
     justify-content: flex-start;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     padding: 1%;
+    .topSection {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 0 2%;
+        h2 {
+            color: #8d8d8d;
+        }
+    }
+}
+.noteGroup:nth-child(even) {
+    background-color: rgb(227, 241, 255);
+}
+.noteGroup:nth-child(odd) {
+    background-color: #ececec;
 }

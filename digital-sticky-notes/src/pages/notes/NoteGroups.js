@@ -60,7 +60,10 @@ const NoteGroups = (props) => {
                 </form>
             </div> */}
             <div className="noteGroups">
-                
+                <div className="topSection">
+                    <h2>Notebook Title</h2>
+                    <h2># Of Notes</h2>
+                </div>
                 {filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
                    return <Card className="noteGroup" key={String(noteGroup._id)}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
@@ -70,6 +73,7 @@ const NoteGroups = (props) => {
                        <div style={{ overflowY: 'auto', width: '100%' }}>
                             <NoteCardHeader noteGroupID={noteGroup._id} key={noteGroup._id} notes={noteGroup.notes} section={noteGroup.section}/> 
                        </div> */}
+                        <h3>#Notes: {noteGroup.notes.length}</h3>
                     </Card>
                 }) : filteredNoteGroups.map(noteGroup => {
                     return <Card className="noteGroup" key={noteGroup._id}>
@@ -79,6 +83,7 @@ const NoteGroups = (props) => {
                        <div style={{ overflowY: 'auto', width: '100%' }}>
                             <NoteCardHeader noteGroupID={noteGroup._id} key={noteGroup._id} notes={noteGroup.notes} section={noteGroup.section}/> 
                        </div> */}
+                       <h2>{noteGroup.notes.length}</h2>
                     </Card>
                 })}
                 
