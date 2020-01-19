@@ -3,7 +3,6 @@ import { Route, Link } from 'react-router-dom'
 import WelcomePage from './pages/welcome-page/WelcomePage'
 import SignInPage from './pages/sign-in/sign-in-page'
 import './App.scss'
-import Notes from './pages/notes/Notes';
 import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './pages/dashboard/Dashboard';
 

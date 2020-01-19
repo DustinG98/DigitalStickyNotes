@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button'
 import { addNoteGroup, fetchInitState } from './actions'
 import { fetchInitData } from './backend-requests/fetchInitData'
 
+
+
 const NoteGroups = (props) => {
     const { noteGroups, searchTerm } = props;
     const [title, setTitle] = useState("")
@@ -48,7 +50,7 @@ const NoteGroups = (props) => {
     }
     return (
         <div>
-            <div className="noteGroupForm" >
+            {/* <div className="noteGroupForm" >
                 <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <TextField required type="text" name="title" placeholder="Title" value={title} onChange={event => handleTitleChange(event)}/>
                     <TextField required type="text" name="section" placeholder="Section" value={section} onChange={event => handleSectionChange(event)}/>
@@ -56,13 +58,13 @@ const NoteGroups = (props) => {
                     <Button variant="contained" color="primary" type="submit" onClick={e => handleAddNoteGroup(e)}>Add Note Group</Button> 
                     : <Button variant="contained" color="primary" disabled>Add Note Group</Button>}
                 </form>
-            </div>
+            </div> */}
             <div className="noteGroups">
                 
                 {filteredNoteGroups === [] ? noteGroups.map(noteGroup => {
                    return <Card className="noteGroup" key={String(noteGroup._id)}>
                        {/* <button onClick={() => deleteNoteGroup(noteGroup.id)}>Delete Note Group</button> */}
-
+                        
                         <h2>{noteGroup.title}</h2>
                        {/* <AddNote noteGroupId={String(noteGroup._id)} />
                        <div style={{ overflowY: 'auto', width: '100%' }}>

@@ -1,0 +1,23 @@
+.noteBooks {
+    .topBar {
+        margin: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #2C6095;
+        .searchBox {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 65%;
+            .searchForm {
+                margin-right: 5%;
+            }
+            button {
+                border: none;
+                outline: none;
+                background-color: transparent;
+            }
+        }
+    }
+}

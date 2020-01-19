@@ -1,5 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import './searchform.scss'
+
+import SearchIcon from '@material-ui/icons/Search';
 
 const SearchForm = (props) => {
     const { setSearchTerm, searchTerm } = props;
@@ -8,8 +11,9 @@ const SearchForm = (props) => {
         setSearchTerm(e.target.value)
     }
     return (
-        <div>
-            <input onChange={e => handleChange(e)} value={searchTerm}/>
+        <div className="searchFormInput">
+            <SearchIcon fontSize="large" color="primary"/>
+            <input  onChange={e => handleChange(e)} value={searchTerm}/>
         </div>
     )
 }
