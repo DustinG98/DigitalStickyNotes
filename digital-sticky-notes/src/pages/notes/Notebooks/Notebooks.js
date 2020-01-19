@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import NoteGroups from '../NoteGroups'
 import SearchForm from '../components/searchform/SearchForm'
-import SearchIcon from '@material-ui/icons/Search';
 
-
+import AddIcon from '@material-ui/icons/Add';
 
 
 import './notebooks.scss'
@@ -12,12 +11,17 @@ import './notebooks.scss'
 
 const Notebooks = () => {
         const [ searchTerm, setSearchTerm ] = useState("")
+        const [open, setOpen] = useState(false)
 
-        const [showSearch, setShowSearch] = useState(false)
+        const handleOpen = () => {
+            setOpen(true);
+          };
+        
+          const handleClose = () => {
+            setOpen(false);
+          };
 
-        const showSearchForm = () => {
-            setShowSearch(!showSearch)
-        }
+
       return (
           <div className="noteBooks">
             <div className="topBar">
@@ -26,11 +30,14 @@ const Notebooks = () => {
                 <div id="searchForm" className="searchForm">
                     <SearchForm setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>
                 </div>
+                <div>
+                    <AddIcon fontSize="large" onClick={handleOpen}/>
+                </div>
               </div>
             </div>
             <div className="allNotebooks">
               {/* NOTES PAGE - ADD NOTE FORM & CURRENT NOTES - PASSING PROPS */}
-                  <NoteGroups searchTerm={searchTerm}/>
+                  {<NoteGroups searchTerm={searchTerm} open={open} handleClose={handleClose} handleOpen={handleOpen}/>}
             </div>
               {/* <NoteCard notes={notes} /> */}
           </div>

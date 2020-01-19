@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import WelcomePage from './pages/welcome-page/WelcomePage'
 import SignInPage from './pages/sign-in/sign-in-page'
 import './App.scss'
@@ -33,7 +33,7 @@ const App = () => {
         
         {/* ROUTES FOR NAVBAR */}
         <Route exact path="/" render={props => <WelcomePage signOut={signOut} isToken={isToken} setToken={setToken} {...props}/>}/>
-        <PrivateRoute path="/dashboard"> <Dashboard/> </PrivateRoute>
+        <PrivateRoute path="/dashboard"> <Dashboard signOut={signOut}/> </PrivateRoute>
         <Route path="/login" render={props => <SignInPage {...props} setIsToken={setToken}/>}/>
       </div>
     )

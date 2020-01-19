@@ -1,9 +1,9 @@
 import React from 'react'
 import './sidemenu.scss'
 
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 
-const SideMenu = () => {
+const SideMenu = ({ signOut }) => {
     return (
         <div className="sideMenu">
             <div className="user">
@@ -20,6 +20,9 @@ const SideMenu = () => {
             </div>
             <div className="link">
                 <NavLink activeClassName="activeLink" to="/dashboard/settings">Settings</NavLink>
+            </div>
+            <div className="link">
+                <Link to="/login" onClick={signOut}>Sign Out</Link>
             </div>
             <div className="appTitle">
                 <h4>Notes4You</h4>

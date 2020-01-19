@@ -8,10 +8,11 @@ import './dashboard.scss'
 import {Route} from 'react-router-dom'
 
 
-const Dashboard = () => {
+const Dashboard = ({ signOut }) => {
     return (
         <div className="mainContainer">
-            <SideMenu/>
+            <SideMenu signOut={signOut}/>
+            
             <div className="rightCont">
                 <Route exact path="/dashboard/notebooks" render={props => <Notebooks {...props}/>}/>
                 <Route path="/dashboard/account" render={props => <MyAccount {...props}/>}/>

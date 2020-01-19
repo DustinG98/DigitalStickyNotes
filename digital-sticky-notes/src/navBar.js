@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const NavBar = ({ signOut, isToken }) => {
     return (
         <nav className="navBar">
-          <h1>Digital Sticky Notes</h1>
+          <h1>Notes4You</h1>
           {/* NAVBAR */}
           <Link className="navLink" to="/">Home</Link>
           <Link className="navLink" to="/dashboard/notebooks">Dashboard</Link>
