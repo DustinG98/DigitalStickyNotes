@@ -30,7 +30,7 @@ const Notebooks = () => {
                     <SearchForm setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>
                 </div>
                 <div>
-                    <AddIcon fontSize="large" onClick={handleOpen}/>
+                    <AddIcon style={{ cursor: 'pointer' }} fontSize="large" onClick={handleOpen}/>
                 </div>
               </div>
             </div>

@@ -13,11 +13,10 @@ const Notebook = () => {
         const userId = localStorage.getItem("user_id")
         axiosWithAuth().get(`/${userId}/notes/${params.id}`)
             .then(res => setNotebook(res.data))
-    }, [])
+    }, [params.id])
     
     return (
         <div className="mainContainer">
-            {console.log(notebook)}
             <SideMenu notebook={notebook}/>
             <h2>EDITOR</h2>
         </div>

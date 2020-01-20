@@ -1,7 +1,5 @@
 import { CONSTANTS } from "../actions"
 
-
-import { addNoteGroup } from '../backend-requests/addNoteGroup'
 // const initialState = [
 //     {   
 //         id: 1, 
@@ -26,12 +24,11 @@ const noteGroupsReducer = (state = initialState, action) => {
             return action.payload.data;
         case CONSTANTS.ADD_NOTE_GROUP:
             const newNoteGroup = {
-                title: action.payload.title,
-                section: action.payload.section,
-                id: Date.now(),
+                title: action.payload.notegroup.title,
+                section: action.payload.notegroup.section,
+                _id: action.payload.notegroup._id,
                 notes: []
             }
-            addNoteGroup(newNoteGroup);
             return [...state, newNoteGroup];
         case CONSTANTS.ADD_NOTE:
             const newNote = {

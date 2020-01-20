@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import './notes.scss'
 import './notegroups.scss'
 
+import {addNoteGroupBackend} from './backend-requests/addNoteGroup'
+
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
@@ -13,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Modal from '@material-ui/core/Modal';
 
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'; 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'; 
 
 import {useHistory} from 'react-router-dom'
 
@@ -29,16 +31,6 @@ const theme = createMuiTheme({
     }
   })
 
-  const useStyles = makeStyles(theme => ({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  }));
 
 const NoteGroups = (props) => {
     const { noteGroups, searchTerm, open, handleClose } = props;
@@ -66,12 +58,13 @@ const NoteGroups = (props) => {
 
         setTitle("")
         setSection("")
+        addNoteGroupBackend({title, section})
+            .then(res => dispatch(addNoteGroup(res)))
         dispatch(addNoteGroup(title, section))
-
-         handleClose()
+        handleClose()
     }
     const filteredNoteGroups = noteGroups.filter(noteGroup => {
-        if(noteGroup.title.includes(searchTerm)) {
+        if(noteGroup.title !== undefined && noteGroup.title.includes(searchTerm)) {
             return noteGroup
         }
         return null;
@@ -87,9 +80,7 @@ const NoteGroups = (props) => {
 
     //handle open notegroup
     const handleOpenNoteGroup = (notebook) => {
-        console.log(notebook)
         let firstNoteId = notebook.notes.length > 0 ? notebook.notes[0]._id : 0;
-        console.log(firstNoteId)
         history.push(`/notebook/${notebook._id}/${firstNoteId}`)
     }
     return (
@@ -102,7 +93,7 @@ const NoteGroups = (props) => {
             >
                 <div className="modal">
                     <div className="noteGroupForm">
-                    <button className="close" style={{ zIndex: '10000' }} onClick={handleClose}>&times;</button>
+                    <button className="close" style={{ zIndex: '999' }} onClick={() => handleClose()}>&times;</button>
                         
                         <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                             <h2>Add Notebook</h2>
