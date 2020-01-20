@@ -87,7 +87,10 @@ const NoteGroups = (props) => {
 
     //handle open notegroup
     const handleOpenNoteGroup = (notebook) => {
-        history.push(`/notebook/${notebook._id}/${notebook.notes[0]._id}`)
+        console.log(notebook)
+        let firstNoteId = notebook.notes.length > 0 ? notebook.notes[0]._id : 0;
+        console.log(firstNoteId)
+        history.push(`/notebook/${notebook._id}/${firstNoteId}`)
     }
     return (
         <div>
