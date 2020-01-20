@@ -1,0 +1,20 @@
+.topBar {
+    margin: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C6095;
+    height: 10vh;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.bold {
+    font-weight: 900;
+    color: #2C6095;
+}

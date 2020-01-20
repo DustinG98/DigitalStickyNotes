@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './sidemenu.scss'
+import axiosWithAuth from '../../../auth/axiosWithAuth'
 
 import {NavLink, Link} from 'react-router-dom'
 
-const SideMenu = ({ signOut }) => {
+const SideMenu = ({ signOut, user }) => {
+
     return (
         <div className="sideMenu">
             <div className="user">
                 <div className="userImg">
                     <img src={require('./usertestimg.jpeg')} alt="user profile"/>
                 </div>
-                <h2>Dustin Graham</h2>
+                <h2>{user.username}</h2>
             </div>
             <div className="link">
                 <NavLink activeClassName="activeLink" to="/dashboard/notebooks">My Notebooks</NavLink>

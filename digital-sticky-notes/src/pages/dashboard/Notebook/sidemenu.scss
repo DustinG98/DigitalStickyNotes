@@ -71,3 +71,17 @@
         height: 100%;
     }
 }
+
+#backToNotebooks {
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 900;
+    background-color: rgb(255, 138, 138);
+    width: 100%;
+    text-align: center;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
