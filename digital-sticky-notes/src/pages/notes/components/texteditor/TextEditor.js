@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Editor, EditorState, convertToRaw, convertFromRaw} from 'draft-js'
+import './texteditor.scss'
 
 //import draft-js-custom-styles
 import createStyles from 'draft-js-custom-styles'
@@ -13,26 +14,25 @@ const {styles, customStyleFn} = createStyles(['font-size', 'font-weight', 'font-
 const TextEditor = (props) => {
 	const { note, close } = props;
 
-	let initialData = JSON.parse(localStorage.getItem(`content${note.id}`))
+	let initialData = JSON.parse(localStorage.getItem(`content${note._id}`))
 
 
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
-	const [readOnly, setReadOnly] = useState(true)
 
 
 	useEffect(() => {
-		let initialData = JSON.parse(localStorage.getItem(`content${note.id}`))
+		let initialData = JSON.parse(localStorage.getItem(`content${note._id}`))
 		if(initialData === null) {
 			setEditorState(EditorState.createEmpty())
 		} else {
 			setEditorState(EditorState.createWithContent(convertFromRaw(initialData)))
 		}
-	}, [note.id])
+	}, [note._id])
 
 	
 	  const saveData = () => {
 		let content = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-		localStorage.setItem(`content${note.id}`, content)
+		localStorage.setItem(`content${note._id}`, content)
 	  }
 
 	  const closePopup = () => {
@@ -40,35 +40,29 @@ const TextEditor = (props) => {
 		  close();
 	  }
 	return (
-		<div className='text-editor' style={{ height: '80vh', overflowY: 'auto' }}>
-			{console.log(initialData)}
-			
-			<button className="close" style={{ zIndex: '999' }} onClick={closePopup}>&times;</button>
-			<div className="toolbar" style={{ position: 'fixed', width: '49%', zIndex: '997' }}>
-				{readOnly === false ? `EDIT MODE` : `READ ONLY`}
-			
-				<EditorToolbar
-					editorState={editorState}
-					setEditorState={setEditorState}
-					readOnly={readOnly}
-					setReadOnly={setReadOnly}
-					saveData={saveData}
-					//pass styles as prop
-					styles={styles}
-				/>
+		<div className="editCont">
+			<div className='text-editor' style={{ height: '80vh', overflowY: 'auto' }}>
+				<div style={{  width: '100%', padding: '5%' }}>
+					<Editor
+						editorState={editorState}
+						onChange={setEditorState}
+						//pass customStyleFn as prop
+						placeholder={'Start typing under here...'}
+						customStyleFn={customStyleFn}
+					/>
+				</div>
 			</div>
-			<div style={{ marginTop: '15%' }}>
-				<h2 style={{marginTop: '3%'}}>{note.title}</h2>
-				<Editor
-					
-					editorState={editorState}
-					onChange={setEditorState}
-					placeholder={'Start Typing Here...'}
-					//pass customStyleFn as prop
-					customStyleFn={customStyleFn}
-					readOnly={readOnly}
-				/>
-			</div>
+				<div className="toolbar">
+				
+					<EditorToolbar
+						editorState={editorState}
+						setEditorState={setEditorState}
+						readOnly={false}
+						saveData={saveData}
+						//pass styles as prop
+						styles={styles}
+					/>
+				</div>
 		</div>
 	);
 }
