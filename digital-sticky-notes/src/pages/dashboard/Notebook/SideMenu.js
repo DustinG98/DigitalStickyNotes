@@ -1,7 +1,7 @@
 import React from 'react'
 import './sidemenu.scss'
 
-import {NavLink, Link} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
@@ -17,7 +17,7 @@ const SideMenu = ({ notebook }) => {
             </div>
             }) : <h3>Loading...</h3>} 
             <div className="link">
-                <a>Add new note</a>
+                <button>Add new note</button>
             </div>
             <div className="link">
                 <NavLink id="backToNotebooks" activeClassName="activeLink" to="/dashboard/notebooks"><ArrowBackIcon style={{ marginRight: '5%', fontSize: '2rem' }}/> My Notebooks</NavLink>

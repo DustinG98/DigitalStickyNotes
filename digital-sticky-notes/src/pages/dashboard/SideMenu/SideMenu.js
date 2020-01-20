@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './sidemenu.scss'
-import axiosWithAuth from '../../../auth/axiosWithAuth'
 
 import {NavLink, Link} from 'react-router-dom'
 
