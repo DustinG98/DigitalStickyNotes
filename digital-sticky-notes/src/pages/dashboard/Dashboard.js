@@ -12,20 +12,24 @@ import {Route} from 'react-router-dom'
 const Dashboard = ({ signOut }) => {
 
     const [user, setUser] = useState({})
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const userID = localStorage.getItem('user_id')
         axiosWithAuth().get(`/${userID}`)
-            .then(res => setUser(res.data))
+            .then(res => {
+                setUser(res.data)
+                setLoading(false)
+            })
     }, [])
     return (
         <div className="mainContainer">
-            <Route path="/dashboard" render={props => <SideMenu signOut={signOut} user={user} {...props}/>}/>
-            <div className="rightCont">
-                <Route exact path="/dashboard/notebooks" render={props => <Notebooks {...props}/>}/>
-                <Route path="/dashboard/account" render={props => <MyAccount user={user} {...props}/>}/>
-                <Route path="/dashboard/settings" render={props => <Settings {...props}/>}/>
-            </div>
+                <Route path="/dashboard" render={props => <SideMenu loading={loading} signOut={signOut} user={user} {...props}/>}/>
+                <div className="rightCont">
+                    <Route exact path="/dashboard/notebooks" render={props => <Notebooks {...props}/>}/>
+                    <Route path="/dashboard/account" render={props => <MyAccount user={user} {...props}/>}/>
+                    <Route path="/dashboard/settings" render={props => <Settings {...props}/>}/>
+                </div>
         </div>
     )
 }
