@@ -32,6 +32,7 @@ const TextEditor = (props) => {
 	
 	  const saveData = () => {
 		let content = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+		console.log(content)
 		localStorage.setItem(`content${note._id}`, content)
 	  }
 
