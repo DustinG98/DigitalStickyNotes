@@ -26,3 +26,13 @@ code {
   border: 1px solid #cfcece;
   outline: none;
 }
+
+div.DraftEditor-root {
+  height: 60vh;
+  width: 60vw;
+  overflow-y: auto;
+}
+div.DraftEditor-editorContainer,
+div.public-DraftEditor-content {
+  height: 100%;
+}

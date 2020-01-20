@@ -50,11 +50,7 @@ const EditorToolbar = ({editorState, setEditorState, styles, readOnly, setReadOn
 
     return (
         <div className="edit-toolbar">
-            <div>
-                {readOnly === true ? <button onClick={() => setReadOnly(!readOnly)}>Edit</button> : null}
-                <button onClick={() => saveData()}>Save</button>
-            </div>
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex', flexDirection: 'column'}}>
                 <p>Font Size</p>
                 {fontSizeOptions}
             </div>
