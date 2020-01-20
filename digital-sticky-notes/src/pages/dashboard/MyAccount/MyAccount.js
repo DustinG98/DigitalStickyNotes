@@ -4,7 +4,6 @@ import './myaccount.scss'
 const MyAccount = ({user}) => {
     return (
         <div>
-            {console.log(user)}
             <div className="topBar">
                 <h1>My Account</h1>
             </div>
