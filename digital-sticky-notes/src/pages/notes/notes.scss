@@ -4,6 +4,27 @@ $phone: 500px;
 .noteGroup {
     border: 1px solid rgba(134, 134, 134, 0.356);
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #A4D2FF; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2C6095; 
+  }
 .noteCardHeader{
     width: 100%;
     min-height: 100px;
@@ -54,19 +75,20 @@ $phone: 500px;
 }
 .noteGroup{
     padding: 0 1%;
-    padding-bottom: 2%;
     background-color: gray;
-    width: 20%;
-    margin: 0 1%;
-    min-width: 300px;
-    max-width: 500px;
-    height: 50vh;
+    width: 100%;
+    margin: 1% 1%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     border-radius: 5%;
-    overflow-y: auto;
+    min-height: 100px;
+    color: white;
+    padding: 0 5%;
+    h2 {
+        font-size: 2rem;
+    }
+
     @media screen and (max-width: $phone) {
         min-width: 100%;
     }
@@ -87,12 +109,30 @@ $phone: 500px;
 }
 
 .noteGroups {
-    width: 90vw;
-    height: auto;
+    width: 100%;
+    height: 85vh;
     align-items: center;
     justify-content: flex-start;
     display: flex;
-    overflow-x: auto;
+    flex-direction: column;
+    overflow-y: scroll;
     padding: 1%;
-
+    .topSection {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 0 2%;
+        h2 {
+            color: #8d8d8d;
+        }
+    }
+}
+.noteGroup:nth-child(even) {
+    background-color: rgb(227, 241, 255);
+}
+.noteGroup:nth-child(odd) {
+    background-color: #ececec;
 }

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import WelcomePage from './pages/welcome-page/WelcomePage'
 import SignInPage from './pages/sign-in/sign-in-page'
 import './App.scss'
-import Notes from './pages/notes/Notes';
 import PrivateRoute from './auth/PrivateRoute'
+import Dashboard from './pages/dashboard/Dashboard';
+import Notebook from './pages/dashboard/Notebook/Notebook'
 
 
 
@@ -30,18 +31,12 @@ const App = () => {
 
     return (
       <div>
-        <nav className="navBar">
-          <h1>Digital Sticky Notes</h1>
-          {/* NAVBAR */}
-          <Link className="navLink" to="/">Home</Link>
-          <Link className="navLink" to="/notes">Notes</Link>
-          {isToken ? <Link className="navLink" onClick={signOut} to="/login">Sign Out</Link>  :<Link className="navLink" to="/login">Sign In</Link>}
-        </nav>
-        {/* ROUTES FOR NAVBAR */}
-        <Route exact path="/" render={props => <WelcomePage {...props}/>}/>
-        <PrivateRoute path="/notes"> <Notes/> </PrivateRoute>
-        <Route path="/login" render={props => <SignInPage {...props} setIsToken={setToken}/>}/>
         
+        {/* ROUTES FOR NAVBAR */}
+        <Route exact path="/" render={props => <WelcomePage signOut={signOut} isToken={isToken} setToken={setToken} {...props}/>}/>
+        <PrivateRoute path="/dashboard"> <Dashboard signOut={signOut}/> </PrivateRoute>
+        <PrivateRoute path='/notebook/:id/:noteId'> <Notebook/> </PrivateRoute>
+        <Route path="/login" render={props => <SignInPage {...props} setIsToken={setToken}/>}/>
       </div>
     )
 }

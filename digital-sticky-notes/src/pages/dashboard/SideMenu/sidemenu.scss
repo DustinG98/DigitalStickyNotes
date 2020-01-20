@@ -1,0 +1,73 @@
+.sideMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 100vh;
+    background-color: #A4D2FF;
+    border: 7px solid #2C6095;
+
+    .link {
+        border-top: 7px solid #2C6095;
+        border-bottom: 7px solid #2C6095;
+        width: 100%;
+        margin-top: -7px;
+        .activeLink {
+            background-color: #A4D2FF;
+            color: #4B4B4B;
+        }
+        a {
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: 900;
+            background-color: #EDEDED;
+            width: 100%;
+            text-align: center;
+            height: 5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #919191;
+        }
+    }
+
+    .user {
+        background-color: #2C6095;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border-top: 7px solid #2C6095;
+        border-bottom: 7px solid #2C6095;
+        align-self: flex-start;
+        overflow: hidden;
+        height: 10em;
+        h2 {
+            font-size: 1.5rem;
+        }
+        .userImg {
+            border-radius: 50%;
+            border: 2px solid #2C6095;
+            overflow: hidden;
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 5%;
+            img {
+                max-width: 100px;
+                max-height: 100px;
+            } 
+        }
+    }
+    .appTitle {
+        color: rgba(255, 255, 255, 0.486);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100%;
+    }
+}
