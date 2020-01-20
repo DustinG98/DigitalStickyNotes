@@ -93,7 +93,7 @@ const NoteGroups = (props) => {
             >
                 <div className="modal">
                     <div className="noteGroupForm">
-                    <button className="close" style={{ zIndex: '10000' }} onClick={handleClose}>&times;</button>
+                    <button className="close" style={{ zIndex: '999' }} onClick={() => handleClose()}>&times;</button>
                         
                         <form onSubmit={e => handleAddNoteGroup(e)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                             <h2>Add Notebook</h2>
