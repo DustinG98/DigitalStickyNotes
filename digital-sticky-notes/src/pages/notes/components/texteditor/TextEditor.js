@@ -1,76 +1,126 @@
-import React, {useState, useEffect} from 'react';
-import {Editor, EditorState, convertToRaw, convertFromRaw} from 'draft-js'
+import React, { Component } from 'react';
 
-//import draft-js-custom-styles
-import createStyles from 'draft-js-custom-styles'
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
-import EditorToolbar from './EditorToolbar'
+import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  HeadlineThreeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+  CodeBlockButton,
+} from 'draft-js-buttons';
+import editorStyles from './editorStyles.css';
+import './texteditor.scss'
+import './edittoolbar.scss'
 
-//use the 'font-size' CSS property with #styles, and #customStyleFn
-const {styles, customStyleFn} = createStyles(['font-size', 'font-weight', 'font-style'])
 
+class HeadlinesPicker extends Component {
+  componentDidMount() {
+    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+  }
 
-const TextEditor = (props) => {
-	const { note, close } = props;
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onWindowClick);
+  }
 
-	let initialData = JSON.parse(localStorage.getItem(`content${note.id}`))
+  onWindowClick = () =>
+    // Call `onOverrideContent` again with `undefined`
+    // so the toolbar can show its regular content again.
+    this.props.onOverrideContent(undefined);
 
-
-	const [editorState, setEditorState] = useState(EditorState.createEmpty());
-	const [readOnly, setReadOnly] = useState(true)
-
-
-	useEffect(() => {
-		let initialData = JSON.parse(localStorage.getItem(`content${note.id}`))
-		if(initialData === null) {
-			setEditorState(EditorState.createEmpty())
-		} else {
-			setEditorState(EditorState.createWithContent(convertFromRaw(initialData)))
-		}
-	}, [note.id])
-
-	
-	  const saveData = () => {
-		let content = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-		localStorage.setItem(`content${note.id}`, content)
-	  }
-
-	  const closePopup = () => {
-		  saveData();
-		  close();
-	  }
-	return (
-		<div className='text-editor' style={{ height: '80vh', overflowY: 'auto' }}>
-			{console.log(initialData)}
-			
-			<button className="close" style={{ zIndex: '999' }} onClick={closePopup}>&times;</button>
-			<div className="toolbar" style={{ position: 'fixed', width: '49%', zIndex: '997' }}>
-				{readOnly === false ? `EDIT MODE` : `READ ONLY`}
-			
-				<EditorToolbar
-					editorState={editorState}
-					setEditorState={setEditorState}
-					readOnly={readOnly}
-					setReadOnly={setReadOnly}
-					saveData={saveData}
-					//pass styles as prop
-					styles={styles}
-				/>
-			</div>
-			<div style={{ marginTop: '15%' }}>
-				<h2 style={{marginTop: '3%'}}>{note.title}</h2>
-				<Editor
-					
-					editorState={editorState}
-					onChange={setEditorState}
-					placeholder={'Start Typing Here...'}
-					//pass customStyleFn as prop
-					customStyleFn={customStyleFn}
-					readOnly={readOnly}
-				/>
-			</div>
-		</div>
-	);
+  render() {
+    const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
+    return (
+      <div>
+        {buttons.map((Button, i) => // eslint-disable-next-line
+          <Button key={i} {...this.props} />
+        )}
+      </div>
+    );
+  }
 }
 
-export default TextEditor;
+class HeadlinesButton extends Component {
+  onClick = () =>
+    // A button can call `onOverrideContent` to replace the content
+    // of the toolbar. This can be useful for displaying sub
+    // menus or requesting additional information from the user.
+    this.props.onOverrideContent(HeadlinesPicker);
+
+  render() {
+    return (
+      <div className={editorStyles.headlineButtonWrapper}>
+        <button onClick={this.onClick} className={editorStyles.headlineButton}>
+          H
+        </button>
+      </div>
+    );
+  }
+}
+
+const toolbarPlugin = createToolbarPlugin();
+const { Toolbar } = toolbarPlugin;
+const plugins = [toolbarPlugin];
+const text = 'In this editor a toolbar shows up once you select part of the text …';
+
+export default class CustomToolbarEditor extends Component {
+
+  state = {
+    editorState: createEditorStateWithText(text),
+  };
+
+  onChange = (editorState) => {
+    this.setState({
+      editorState,
+    });
+  };
+
+  focus = () => {
+    this.editor.focus();
+  };
+
+  render() {
+    return (
+      <div className="editCont">
+        <div className="editor" onClick={this.focus}>
+			<div className="text-editor">
+			<Editor
+				editorState={this.state.editorState}
+				onChange={this.onChange}
+				plugins={plugins}
+				ref={(element) => { this.editor = element; }}
+			/>
+		  </div>
+		  <div className="edit-toolbar">
+			<Toolbar>
+				{
+				// may be use React.Fragment instead of div to improve perfomance after React 16
+				(externalProps) => (
+					<div className="toolbar-buttons">
+					<BoldButton {...externalProps} />
+					<ItalicButton {...externalProps} />
+					<UnderlineButton {...externalProps} />
+					<CodeButton {...externalProps} />
+					<Separator {...externalProps} />
+					<HeadlinesButton {...externalProps} />
+					<UnorderedListButton {...externalProps} />
+					<OrderedListButton {...externalProps} />
+					<BlockquoteButton {...externalProps} />
+					<CodeBlockButton {...externalProps} />
+					</div>
+				)
+				}
+			</Toolbar>
+		  </div>
+        </div>
+      </div>
+    );
+  }
+}
