@@ -94,7 +94,7 @@ export default class CustomToolbarEditor extends Component {
       <div className="editCont">
         <div className="editor" onClick={this.focus}>
 			<div className="text-editor">
-        {  console.log(this.contentState)}
+        {/* {  console.log(this.contentState)} */}
 			<Editor
 				editorState={this.state.editorState}
 				onChange={this.onChange}
