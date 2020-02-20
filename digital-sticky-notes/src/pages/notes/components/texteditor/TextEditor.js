@@ -16,6 +16,8 @@ import {
   BlockquoteButton,
   CodeBlockButton,
 } from 'draft-js-buttons';
+
+import { convertToRaw } from 'draft-js'
 import editorStyles from './editorStyles.css';
 import './texteditor.scss'
 import './edittoolbar.scss'
@@ -86,11 +88,13 @@ export default class CustomToolbarEditor extends Component {
     this.editor.focus();
   };
 
+  contentState = convertToRaw(this.state.editorState.getCurrentContent())
   render() {
     return (
       <div className="editCont">
         <div className="editor" onClick={this.focus}>
 			<div className="text-editor">
+        {  console.log(this.contentState)}
 			<Editor
 				editorState={this.state.editorState}
 				onChange={this.onChange}
